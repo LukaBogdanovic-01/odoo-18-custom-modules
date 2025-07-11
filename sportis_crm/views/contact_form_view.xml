@@ -1,0 +1,89 @@
+<odoo>
+  <data>
+
+    <record id="view_partner_form_inherit_custom" model="ir.ui.view">
+      <field name="name">res.partner.form.inherit.custom</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+
+        <!-- Zamjena prikaza za COMPANY -->
+        <xpath expr="//sheet/group[group]" position="replace">
+  <group attrs="{'invisible': [('is_company', '=', False)]}">
+    <!-- Lijeva kolona -->
+    <group>
+
+    <field name="x_nature_of_company"  string="Nature of company"/>
+    <field name="level_of_playing" widget="radio" options="{'horizontal': true}" class="styled-radio-group"/>
+
+
+  <b>Address</b>
+  <div>
+    <field name="street" placeholder="Street..."/>
+    <field name="street2" placeholder="Street 2..."/>
+    <div class="d-flex gap-2">
+      <field name="city" placeholder="City"/>
+      <field name="state_id" placeholder="State"/>
+      <field name="zip" placeholder="ZIP"/>
+    </div>
+    <field name="country_id" placeholder="Country"/>
+  </div>
+
+  <field name="vat" string="Tax ID" placeholder="e.g. BE0477472701"/>
+</group>
+
+
+    <!-- Desna kolona -->
+    <group>
+      <field name="phone" string="Phone"/>
+      <field name="mobile"/>
+      <field name="phone_secondary" string="Office phone"/>
+      <field name="email"/>
+      <field name="website" placeholder="e.g. https://www.example.com"/>
+      <field name="category_id" widget="many2many_tags" string="Tags"/>
+      <field name="followup_by_id" widget="many2one_avatar_user" string="Follow-up by"/>
+      <field name="sport"/>
+      <field name="training_center" widget="boolean_toggle" string="Training center"/>
+    </group>
+
+    <field name="lang" invisible="1"/>
+  </group>
+</xpath>
+
+
+
+        <!-- Ubacivanje prikaza za INDIVIDUAL -->
+        <xpath expr="//sheet/group[group]" position="before">
+          <group attrs="{'invisible': [('is_company', '=', True)]}">
+            <field name="type" invisible="1"/>
+            <field name="title"/>
+            <field name="contact_qualification"/>
+            <field name="decision_maker" widget="radio" options="{'horizontal': true}"/>
+            <field name="phone" string="Primary phone"/>
+            <field name="mobile"/>
+            <field name="phone_secondary"/>
+            <field name="email"/>
+            <field name="website" placeholder="e.g. https://www.example.com"/>
+            <field name="category_id" widget="many2many_tags" placeholder="e.g. 'B2B', 'VIP', 'Consulting', ..."/>
+            <field name="followup_by_id" widget="many2one_avatar_user"/>
+            <field name="sport" readonly="1"/>
+            <field name="lang" invisible="1"/>
+          </group>
+        </xpath>
+        <xpath expr="//page[@name='sales_purchases']//group[@name='misc']//field[@name='ref']" position="after">
+            <field name="website"/>
+        </xpath>
+        <!-- <xpath expr="//page[@name='sales_purchases']//group[@name='misc']//field[@name='website']" position="after">
+            <field name="industry_id" options="{'no_create': True}" placeholder="e.g. Technology"/>
+        </xpath> -->
+
+
+
+
+      </field>
+    </record>
+
+
+
+  </data>
+</odoo>
