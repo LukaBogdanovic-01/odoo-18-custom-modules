@@ -1,0 +1,19 @@
+<odoo>
+    <record id="view_universal_request_calendar" model="ir.ui.view">
+        <field name="name">universal.request.calendar</field>
+        <field name="model">universal.request</field>
+        <field name="arch" type="xml">
+            <calendar string="Kalendar Zahtjeva" date_start="deadline" color="assigned_user_id">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_universal_request_calendar" model="ir.actions.act_window">
+        <field name="name">Kalendar</field>
+        <field name="res_model">universal.request</field>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="view_universal_request_calendar"/>
+    </record>
+
+</odoo>

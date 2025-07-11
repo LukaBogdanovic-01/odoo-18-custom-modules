@@ -1,0 +1,28 @@
+<odoo>
+    <!-- Glavni korijen -->
+    <menuitem id="menu_universal_request_root" name="DIGIMEN" sequence="10"/>
+
+    <!-- Glavne sekcije -->
+    <menuitem id="menu_universal_request" name="Aktivnosti" parent="menu_universal_request_root" action="action_universal_request" sequence="10"/>
+    <menuitem id="menu_universal_request_calendar" name="Kalendar" parent="menu_universal_request_root" action="action_universal_request_calendar" sequence="20"/>
+    <menuitem id="menu_universal_request_projects" name="Projekti" parent="menu_universal_request_root" action="project.open_view_project_all" sequence="25"/>
+    <menuitem id="menu_universal_request_sales_root" name="Prodaja" parent="menu_universal_request_root" sequence="30"/>
+    <menuitem id="menu_universal_request_support" name="Podrška" parent="menu_universal_request_root" action="action_empty_placeholder" sequence="40"/>
+    <menuitem id="menu_universal_request_dashboard" name="Tabla" parent="menu_universal_request_root" action="action_empty_placeholder" sequence="50"/>
+    <menuitem id="menu_universal_request_library" name="Setup" parent="menu_universal_request_root" sequence="60"/>
+
+    
+
+    <!-- Stavke unutar Setupa -->
+    <menuitem id="menu_request_type" name="Šabloni" parent="menu_universal_request_library" action="action_request_type" sequence="10"/>
+    <menuitem id="menu_request_code" name="Ciljevi" parent="menu_universal_request_library" action="action_code_book" sequence="20"/>
+    <menuitem id="menu_request_code_proces" name="Procesi" parent="menu_universal_request_library" action="action_code_book_proces" sequence="30"/>
+    <!-- Stavke unutar Prodaje -->
+    <menuitem id="menu_universal_request_contacts" name="Kontakti" parent="menu_universal_request_sales_root" action="contacts.action_contacts" sequence="10"/>
+    <menuitem id="menu_universal_request_sales" name="Ponude" parent="menu_universal_request_sales_root" action="sale.action_quotations" sequence="20"/>
+    <menuitem id="menu_universal_request_crm" name="CRM" parent="menu_universal_request_sales_root" action="crm.crm_lead_all_leads" sequence="30"/>
+    <menuitem id="menu_universal_request_survey" name="Ankete" parent="menu_universal_request_sales_root" action="survey.action_survey_form" sequence="40"/>
+    <menuitem id="menu_universal_request_portal" name="Portal" parent="menu_universal_request_sales_root" action="action_open_montexel_roi" sequence="50"/>
+    <menuitem id="menu_universal_request_pricelist" name="Cjenovnik" parent="menu_universal_request_sales_root" action="action_open_montexel_pricelist" sequence="60"/>
+    <menuitem id="menu_universal_request_website" name="Websajt" parent="menu_universal_request_sales_root" action="action_open_montexel_website" sequence="70"/>
+</odoo>

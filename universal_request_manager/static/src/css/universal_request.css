@@ -1,0 +1,48 @@
+.status-badge {
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.status-badge.draft {
+    background-color: #6c757d; /* sivo */
+}
+.status-badge.approved {
+    background-color: #17a2b8; /* plavo */
+}
+.status-badge.done {
+    background-color: #28a745; /* zeleno */
+}
+.status-badge.rejected {
+    background-color: #dc3545; /* crveno */
+}
+
+.o_kanban_status_circle .o_status {
+    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    margin-left: 8px;
+    background-color: #ccc; /* default */
+}
+
+.o_kanban_status_circle .o_status.draft {
+    background-color: gray !important;
+}
+.o_kanban_status_circle .o_status.in_progress {
+    background-color: orange !important;
+}
+.o_kanban_status_circle .o_status.done {
+    background-color: green !important;
+}
+.o_kanban_status_circle .o_status.rejected,
+.o_kanban_status_circle .o_status.cancel {
+    background-color: red !important;
+}
+
+
+.o_kanban_group .o_kanban_counter {
+    display: none !important;
+}
+
