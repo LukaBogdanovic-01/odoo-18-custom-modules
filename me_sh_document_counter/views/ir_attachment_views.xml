@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_attachment_form_inherit_me" model="ir.ui.view">
+        <field name="name">attachment.form.view.inherit.me</field>
+        <field name="model">ir.attachment</field>
+        <field name="inherit_id" ref="sh_document_management.attachment_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='directory_id']" position="after">
+                <field name="document_number" readonly="1" />
+                <field name="document_type_id" />
+            </xpath>
+
+            <!-- Ove zamene su prazne (možda više nisu potrebne) -->
+            <xpath expr="//field[@name='document_tags']" position="replace">
+                <field name="document_tags"
+                       widget="many2many_tags"
+                       options="{'color_field': 'color', 'no_create_edit': True}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='type']" position="replace">
+                <field name="type"/>
+            </xpath>
+
+            <xpath expr="//field[@name='datas']" position="replace">
+                <field name="datas" filename="name" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='url']" position="replace">
+                <field name="url" widget="url" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='sh_user_ids']" position="after">
+                <field name="date_from" />
+                <field name="date_to" />
+            </xpath>
+
+            <xpath expr="//field[@name='mimetype']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='company_id']/ancestor::group[1]" position="before">
+                <group>
+                    <field name="type"/>
+                    <field name="datas" filename="name" invisible="1"/>
+                    <field name="url" widget="url" invisible="1"/>
+                    <field name="classification_plan_id"/>
+                    <field name="contact_id"/>
+                    <field name="state"/>
+                    <field name="document_tags"
+                           widget="many2many_tags"
+                           options="{'color_field': 'color', 'no_create_edit': True}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+
+    <record id="view_attachment_tree_me" model="ir.ui.view">
+        <field name="name">ir.attachment.list.me</field>
+        <field name="model">ir.attachment</field>
+        <field name="inherit_id" ref="base.view_attachment_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="document_number" />
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="document_type_id" />
+                <field name="contact_id" />
+                <field name="classification_plan_id" />
+                <field name="state" />
+            </xpath>
+            <xpath expr="//field[@name='res_model']" position="replace">
+                <field name="res_model"/>
+            </xpath>
+            <xpath expr="//field[@name='res_field']" position="replace">
+                <field name="res_field"/>
+            </xpath>
+            <xpath expr="//field[@name='res_id']" position="replace">
+                <field name="res_id"/>
+            </xpath>
+            <xpath expr="//field[@name='file_size']" position="replace">
+                <field name="file_size"/>
+            </xpath>
+            <xpath expr="//field[@name='type']" position="replace">
+                <field name="type"/>
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute name="create">false</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_all_documents_me" model="ir.actions.act_window">
+        <field name="name">All Documents</field>
+        <field name="res_model">ir.attachment</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('document_number','!=','')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new document
+            </p>
+            <p>
+                Also you will find here all the related documents and download it by clicking on any individual document.
+            </p>
+        </field>
+    </record>
+
+    <record id="sh_document_management.sub_menu_all_document" model="ir.ui.menu">
+        <field name="action" ref="action_all_documents_me"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_document_type,access_document_type,model_document_type,sh_document_management.document_group_user,1,1,1,1
+access_directory_type,access_directory_type,model_directory_type,sh_document_management.document_group_user,1,1,1,1
+access_document_signature_plan,access_document_signature_plan,model_document_signature_plan,sh_document_management.document_group_user,1,1,1,1
+access_document_classification_plan,access_document_classification_plan,model_document_classification_plan,sh_document_management.document_group_user,1,1,1,1

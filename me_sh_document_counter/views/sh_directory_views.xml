@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_open_new_file_form" model="ir.actions.act_window">
+        <field name="name">Create New Document</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ir.attachment</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_document_directory_form_me" model="ir.ui.view">
+        <field name="name">directory.form.view.me</field>
+        <field name="model">document.directory</field>
+        <field name="inherit_id" ref="sh_document_management.directory_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="before">
+                <field name="directory_number" readonly="1" />
+                <field name="directory_type_id" />
+                <field name="classification_plan_id" />
+                <field name="department_id" />
+                <field name="signature_plan_id" />
+            </xpath>
+
+            <xpath expr="//field[@name='parent_id']" position="replace" />
+            <xpath expr="//field[@name='file_count']" position="replace" />
+            <xpath expr="//field[@name='sub_directory_count']" position="replace" />
+            <xpath expr="//field[@name='directory_tag_ids']" position="replace" />
+            <xpath expr="//field[@name='visible_directory']" position="replace" />
+
+            <xpath expr="//field[@name='sh_user_ids']" position="replace">
+                <field name="sh_user_ids_domain" invisible="1" />
+                <field name="sh_user_ids" domain="[('id', 'in', sh_user_ids_domain)]" widget="many2many_tags"/>
+            </xpath>
+
+            <xpath expr="//field[@name='sh_user_ids']" position="after">
+                <field name="partner_type" />
+                <field name="partner_type_domain" invisible="1" />
+                <field name="partner_id" domain="[('id', 'in', partner_type_domain)]" />
+                <field name="directory_tag_ids" widget="many2many_tags"
+                       options="{'color_field': 'color', 'no_create_edit': True}" />
+                <field name="note" />
+            </xpath>
+
+            <xpath expr="//page[2]" position="replace" />
+
+            <xpath expr="//notebook/preceding-sibling::group[1]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='attachment_ids']/list/field[@name='name']" position="before">
+                <field name="document_number" />
+            </xpath>
+            <xpath expr="//field[@name='attachment_ids']/list/field[@name='name']" position="after">
+                <field name="document_type_id" />
+                <field name="classification_plan_id" />
+            </xpath>
+            <xpath expr="//field[@name='attachment_ids']/list/field[@name='res_model']" position="replace"/>
+            <xpath expr="//field[@name='attachment_ids']/list/field[@name='res_field']" position="replace"/>
+            <xpath expr="//field[@name='attachment_ids']/list/field[@name='res_id']" position="replace"/>
+            <xpath expr="//field[@name='attachment_ids']/list/field[@name='type']" position="replace"/>
+            <xpath expr="//field[@name='attachment_ids']/list/field[@name='datas']" position="replace"/>
+
+            <xpath expr="//field[@name='attachment_ids']" position="after">
+                <button string="Create New Document" type="action" name="%(action_open_new_file_form)d"/>
+            </xpath>
+
+            <xpath expr="//list" position="attributes">
+                <attribute name="class">remove-new-record</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="directory_tree_view_me" model="ir.ui.view">
+        <field name="name">directory.list.view.me</field>
+        <field name="model">document.directory</field>
+        <field name="inherit_id" ref="sh_document_management.directory_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="directory_number" />
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="directory_type_id" />
+                <field name="classification_plan_id" />
+                <field name="signature_plan_id" />
+                <field name="note" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

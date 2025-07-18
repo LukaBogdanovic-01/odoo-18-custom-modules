@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-name="sh_document_management.DropZone" owl="1">
+        <div t-if="props.visible"
+            t-attf-class="o_drop_area"
+            t-on-dragover.prevent="()=>{}"
+            t-on-dragleave="props.hideZone"
+            t-on-drop.prevent="onDrop">
+            <i class="fa fa-upload fa-10x"></i>
+        </div>
+    </t>
+
+    <t t-name="sh_document_management.DirectoryFileUploader" owl="1">
+        <div
+            t-att-class="props.record and props.record.data ? 'oe_kanban_color_' + props.record.data.color : ''">
+            <FileUploader
+                acceptedFileExtensions="props.acceptedFileExtensions"
+                fileUploadClass="'directory_file_uploader'"
+                multiUpload="true"
+                onUploaded.bind="onFileUploaded"
+                onUploadComplete.bind="onUploadComplete">
+                <t t-set-slot="toggler">
+                    <t t-if="props.togglerTemplate" t-call="{{ props.togglerTemplate }}" />
+                    <t t-else="" t-slot="default" />
+                </t>
+                <t t-slot="extra" />
+            </FileUploader>
+        </div>
+    </t>
+
+    <t t-name="sh_document_management.ListRenderer" t-inherit="web.ListRenderer"
+        t-inherit-mode="primary" owl="1">
+        <xpath expr="//div[@t-ref='root']" position="before">
+            <DirectoryDropZone
+                visible="state.dropzoneVisible"
+                hideZone="() => state.dropzoneVisible = false" />
+        </xpath>
+        <xpath expr="//div[@t-ref='root']" position="attributes">
+            <attribute name="t-on-dragenter.stop.prevent">() => state.dropzoneVisible = true</attribute>
+        </xpath>
+    </t>
+
+    <t t-name="sh_document_management.KanbanRenderer" t-inherit="web.KanbanRenderer"
+        t-inherit-mode="primary"
+        owl="1">
+        <xpath expr="//div[@t-ref='root']" position="before">
+            <DirectoryDropZone
+                visible="state.dropzoneVisible"
+                hideZone="() => state.dropzoneVisible = false" />
+        </xpath>
+        <xpath expr="//div[@t-ref='root']" position="attributes">
+            <attribute name="t-on-dragenter.stop.prevent">() => state.dropzoneVisible = true</attribute>
+        </xpath>
+    </t>
+
+    <t t-name="sh_document_management.ListView.Buttons" t-inherit="web.ListView.Buttons"
+        t-inherit-mode="primary"
+        owl="1">
+        <xpath expr="//*[@class='btn btn-primary o_list_button_add']" position="after">
+            <t t-call="sh_document_management.DirectoryViewUploadButton" />
+        </xpath>
+    </t>
+
+    <t t-name="sh_document_management.KanbanView.Buttons" t-inherit="web.KanbanView.Buttons"
+        t-inherit-mode="primary" owl="1">
+        <xpath expr="//*[@class='btn btn-primary o-kanban-button-new']" position="after">
+            <t t-call="sh_document_management.DirectoryViewUploadButton" />
+        </xpath>
+    </t>
+
+    <t t-name="sh_document_management.DirectoryViewUploadButton" owl="1">
+        <!-- No record is available so rely on the action context to contain the default_move_type -->
+        <DirectoryFileUploader>
+            <t t-set-slot="default">
+                <button type="button" class="btn btn-secondary o_button_upload_bill">
+                    Upload
+                </button>
+            </t>
+        </DirectoryFileUploader>
+    </t>
+
+    <t t-name="sh_document_management.DashboardKanbanRecord" owl="1">
+        <div
+            role="article"
+            t-att-class="getRecordClasses()"
+            t-att-data-id="props.canResequence and props.record.id"
+            t-att-tabindex="props.record.model.useSampleModel ? -1 : 0"
+            t-on-click="onGlobalClick"
+            t-on-dragenter.stop.prevent="() => state.dropzoneVisible = true"
+            t-ref="root">
+            <DirectoryFileUploader record="props.record">
+                <t t-set-slot="extra">
+                    <DirectoryDropZone
+                        visible="state.dropzoneVisible"
+                        hideZone="() => state.dropzoneVisible = false" />
+                    <t t-call="{{ templates['kanban-box'] }}" />
+                </t>
+            </DirectoryFileUploader>
+        </div>
+    </t>
+
+    <t t-name="sh_document_management.JournalUploadLink" owl="1">
+        <div t-att-class="props.btnClass">
+            <a href="#" t-out="props.linkText" />
+        </div>
+    </t>
+
+</templates>

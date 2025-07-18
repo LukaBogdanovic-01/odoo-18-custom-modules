@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Form Views -->
+    <record id="directory_type_form_view" model="ir.ui.view">
+        <field name="name">directory.type.form.view</field>
+        <field name="model">directory.type</field>
+        <field name="arch" type="xml">
+            <form string="Directory Type">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="document_type_form_view" model="ir.ui.view">
+        <field name="name">document.type.form.view</field>
+        <field name="model">document.type</field>
+        <field name="arch" type="xml">
+            <form string="Document Type">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="document_signature_plan_form_view" model="ir.ui.view">
+        <field name="name">document.signature.plan.form.view</field>
+        <field name="model">document.signature.plan</field>
+        <field name="arch" type="xml">
+            <form string="Document Signature Plan">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="document_classification_plan_form_view" model="ir.ui.view">
+        <field name="name">document.classification.plan.form.view</field>
+        <field name="model">document.classification.plan</field>
+        <field name="arch" type="xml">
+            <form string="Document Classification Plan">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree Views -->
+    <record id="directory_type_tree_view" model="ir.ui.view">
+        <field name="name">directory.type.list.view</field>
+        <field name="model">directory.type</field>
+        <field name="arch" type="xml">
+            <list string="Directory Type">
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <record id="document_type_tree_view" model="ir.ui.view">
+        <field name="name">document.type.list.view</field>
+        <field name="model">document.type</field>
+        <field name="arch" type="xml">
+            <list string="Document Type">
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <record id="document_signature_plan_tree_view" model="ir.ui.view">
+        <field name="name">document.signature.plan.list.view</field>
+        <field name="model">document.signature.plan</field>
+        <field name="arch" type="xml">
+            <list string="Document Signature Plan">
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <record id="document_classification_plan_tree_view" model="ir.ui.view">
+        <field name="name">document.classification.plan.list.view</field>
+        <field name="model">document.classification.plan</field>
+        <field name="arch" type="xml">
+            <list string="Document Classfication Plan">
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="directory_type_action" model="ir.actions.act_window">
+        <field name="name">Directory Type</field>
+        <field name="res_model">directory.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create a New Directory Type</p>
+        </field>
+    </record>
+
+    <record id="document_type_action" model="ir.actions.act_window">
+        <field name="name">Document Type</field>
+        <field name="res_model">document.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create a New Document Type</p>
+        </field>
+    </record>
+
+    <record id="document_signature_plan_action" model="ir.actions.act_window">
+        <field name="name">Document Signature Plan</field>
+        <field name="res_model">document.signature.plan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p
+                class="oe_view_nocontent_create"
+            >Create a Document Signature Plan</p>
+        </field>
+    </record>
+
+    <record
+        id="document_classification_plan_action"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Document Classification Plan</field>
+        <field name="res_model">document.classification.plan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p
+                class="oe_view_nocontent_create"
+            >Create a Document Classification Plan</p>
+        </field>
+    </record>
+
+    <!-- Menuitems -->
+    <menuitem
+        id="menu_directory_type"
+        name="Directory Type"
+        parent="sh_document_management.menu_configuration"
+        action="directory_type_action"
+        sequence="3"
+    />
+    <menuitem
+        id="menu_document_type"
+        name="Document Type"
+        parent="sh_document_management.menu_configuration"
+        action="document_type_action"
+        sequence="4"
+    />
+    <menuitem
+        id="menu_document_signature_plan"
+        name="Document Signature Plan"
+        parent="sh_document_management.menu_configuration"
+        action="document_signature_plan_action"
+        sequence="5"
+    />
+    <menuitem
+        id="menu_document_classification_plan"
+        name="Document Classification Plan"
+        parent="sh_document_management.menu_configuration"
+        action="document_classification_plan_action"
+        sequence="6"
+    />
+
+</odoo>
