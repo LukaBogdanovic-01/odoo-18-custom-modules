@@ -184,6 +184,25 @@
         <field name="url">https://www.montexel.com/en/odoo-helpdesk</field>
         <field name="target">new</field> <!-- otvori u novom tabu -->
     </record>
+    <!-- Akcije za spoljne linkove -->
+    <record id="action_open_okr_goals" model="ir.actions.act_url">
+        <field name="name">OKR Ciljevi</field>
+        <field name="type">ir.actions.act_url</field>
+        <field name="url">https://www.montexel.com/bmc</field>
+        <field name="target">new</field>
+    </record>
+    <record id="action_open_ost_tools" model="ir.actions.act_url">
+        <field name="name">OST</field>
+        <field name="type">ir.actions.act_url</field>
+        <field name="url">https://www.montexel.com/konsalting</field>
+        <field name="target">new</field>
+    </record>
+    <record id="action_open_marketing" model="ir.actions.act_url">
+        <field name="name">OST</field>
+        <field name="type">ir.actions.act_url</field>
+        <field name="url">https://www.montexel.com/bmc-1</field>
+        <field name="target">new</field>
+    </record>
 
 
 

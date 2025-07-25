@@ -38,3 +38,7 @@ access_code_book_proces_director,access.code.book.proces.director,model_code_boo
 access_project_tag_team,access.project.tag.team,model_project_tag,universal_request_manager.group_team,1,0,0,0
 access_project_tag_manager,access.project.tag.manager,model_project_tag,universal_request_manager.group_manager,1,1,1,0
 access_project_tag_director,access.project.tag.director,model_project_tag,universal_request_manager.group_director,1,1,1,1
+
+
+access_swot_item_user,access.swot.item.user,model_swot_item,base.group_user,1,1,1,1
+access_swot_item_admin,access.swot.item.admin,model_swot_item,base.group_system,1,1,1,1

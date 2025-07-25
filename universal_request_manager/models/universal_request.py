@@ -118,7 +118,7 @@ class UniversalRequest(models.Model):
         return [
             ('inbox', 'Inbox', False),
             ('submitted', 'Zadaci', False),
-            ('approval', 'Odobrava', False),
+            ('approval', 'Delegiranje', False),
             ('approved', 'Planovi', False),
             ('archived', 'Arhiva', True),  # <- ovdje je fold
         ]
@@ -129,7 +129,7 @@ class UniversalRequest(models.Model):
         return [
             ('inbox', 'Inbox'),
             ('submitted', 'Zadaci'),
-            ('approval', 'Odobrava'),
+            ('approval', 'Delegiranje'),
             ('approved', 'Planovi'),
             ('archived', 'Arhiva'),
         ]
@@ -262,3 +262,31 @@ class Tags(models.Model):
 
 
 
+class SwotItem(models.Model):
+    _name = 'swot.item'
+    _description = 'SWOT Stavka'
+
+    name = fields.Char(string='Naziv', required=True)
+    description = fields.Text(string='Opis')
+    
+    type = fields.Selection([
+        ('strength', 'Snaga'),
+        ('weakness', 'Slabost'),
+        ('opportunity', 'Prilika'),
+        ('threat', 'Prijetnja')
+    ], string='Tip', required=True, group_expand='_group_expand_type')
+
+    priority = fields.Selection([
+        ('0', 'Niska'),
+        ('1', 'Srednja'),
+        ('2', 'Visoka')
+    ], string='Prioritet', default='1')
+
+    project_id = fields.Many2one('project.project', string='Projekat')
+
+
+    
+
+    @api.model
+    def _group_expand_type(self, values, domain, order=None):
+        return ['strength', 'weakness', 'opportunity', 'threat']
