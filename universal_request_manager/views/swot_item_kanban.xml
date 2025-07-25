@@ -24,7 +24,7 @@
                                 <strong><field name="name"/></strong>
                                 <div><field name="description"/></div>
 
-                                <div t-if="record.task_id.raw_value or record.project_id.raw_value">
+                                <div t-if="record.project_id.raw_value">
                                     <field name="project_id" modifiers="{'invisible': [('model_type', '!=', 'project.project')]}"/>
                                 </div>
                             </div>
