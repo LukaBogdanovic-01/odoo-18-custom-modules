@@ -85,11 +85,11 @@
             <list>
                 <field name="name"/>
                 <field name="status"/>
-                <field name="priority"/>
-                <field name="deadline"/>
-                <field name="assigned_user_id"/>
-                <field name="project_id"/>
-                <field name="tag_ids"/>
+                <field name="priority" optional="show"/>
+                <field name="deadline" optional="show"/>
+                <field name="assigned_user_id" optional="show"/>
+                <field name="project_id" optional="show"/>
+                <field name="tag_ids" optional="show"/>
             </list>
         </field>
     </record>
@@ -119,6 +119,8 @@
             </kanban>
         </field>
     </record>
+
+
 
     <record id="view_universal_request_search" model="ir.ui.view">
         <field name="name">universal.request.search</field>

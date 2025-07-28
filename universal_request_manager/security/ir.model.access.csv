@@ -42,3 +42,6 @@ access_project_tag_director,access.project.tag.director,model_project_tag,univer
 
 access_swot_item_user,access.swot.item.user,model_swot_item,base.group_user,1,1,1,1
 access_swot_item_admin,access.swot.item.admin,model_swot_item,base.group_system,1,1,1,1
+
+access_swot_analysis_user,access.swot.analysis.user,model_swot_analysis,base.group_user,1,1,1,1
+access_swot_analysis_admin,access.swot.analysis.admin,model_swot_analysis,base.group_system,1,1,1,1

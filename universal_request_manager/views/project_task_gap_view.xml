@@ -1,0 +1,107 @@
+<odoo>
+    <record id="view_project_task_form_gap_analysis" model="ir.ui.view">
+        <field name="name">project.task.form.gap.analysis</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <!-- Početak dvokolonskog rasporeda -->
+                <group name="gap_container" col="2">
+                    
+                    <!-- Kolona 1 -->
+                    <group string="Opšti podaci">
+                        <field name="x_gap_area_description"/>
+                        <field name="x_gap_team"/>
+                        <field name="x_gap_domain"/>
+                        <field name="x_gap_quarter"/>
+                    </group>
+
+                    <!-- Kolona 2 -->
+                    <group string="Analiza">
+                        <field name="x_gap_current_state"/>
+                        <field name="x_gap_target_state"/>
+                        <field name="x_gap_score"/>
+                    </group>
+
+                    <!-- Kolona 1 -->
+                    <group string="Uzroci i mjere">
+                        <field name="x_gap_causes"/>
+                        <field name="x_gap_solutions"/>
+                        <field name="x_gap_priority"/>
+                    </group>
+
+                    <!-- Kolona 2 -->
+                    <group string="Povezivanje">
+                        <field name="x_gap_related_tasks"/>
+                        <field name="x_gap_comments"/>
+                    </group>
+
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_project_task_list_gap" model="ir.ui.view">
+        <field name="name">project.task.list.gap</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/> 
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="x_gap_priority" optional="show"/>
+                <field name="x_gap_score" optional="show"/>
+                <field name="x_gap_team" optional="show"/>
+                <field name="x_gap_domain" optional="show"/>
+                <field name="x_gap_quarter" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_task_kanban_gap" model="ir.ui.view">
+        <field name="name">project.task.kanban.gap</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="colors">
+                    1:red; 3:orange; 10:green
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_project_task_gap_search" model="ir.ui.view">
+        <field name="name">project.task.gap.search</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/> 
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+
+                <!-- Brzi filter: samo GAP zadaci (preko taga) -->
+                <filter string="GAP analize" name="filter_gap_tag" domain="[('tag_ids.name', '=', 'GAP analiza')]" help="Prikaži samo GAP zadatke"/>
+
+                <!-- Dropdown filter: Prioritet -->
+                <filter string="Prioritet GAP-a" name="filter_gap_priority" context="{'group_by': 'x_gap_priority'}"/>
+
+                <!-- Dropdown filter: Tim -->
+                <filter string="Po timu" name="filter_gap_team" context="{'group_by': 'x_gap_team'}"/>
+
+                <!-- Dropdown filter: Oblast -->
+                <filter string="Po oblasti" name="filter_gap_domain" context="{'group_by': 'x_gap_domain'}"/>
+
+                <!-- Dropdown filter: Kvartal -->
+                <filter string="Po kvartalu" name="filter_gap_quarter" context="{'group_by': 'x_gap_quarter'}"/>
+
+                <!-- Standardna polja -->
+                <field name="name"/>
+                <field name="user_ids"/>
+                <field name="x_gap_priority"/>
+                <field name="x_gap_team"/>
+                <field name="x_gap_domain"/>
+                <field name="x_gap_quarter"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

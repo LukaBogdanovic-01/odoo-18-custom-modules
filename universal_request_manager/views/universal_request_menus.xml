@@ -42,6 +42,6 @@
     <menuitem id="menu_universal_request_goals_tools" name="Biznis alati" parent="menu_universal_request_goals_root" sequence="20"/>
 
     <!-- Grananje iz 'Biznis alati' -->
-    <menuitem id="menu_universal_request_goals_tools_swot" name="SWOT" parent="menu_universal_request_goals_tools" action="action_swot_item_kanban" sequence="10"/>
+    <menuitem id="menu_universal_request_goals_tools_swot" name="SWOT" parent="menu_universal_request_goals_tools" action="action_swot_analysis" sequence="10"/>
     <menuitem id="menu_universal_request_goals_tools_ost" name="OST" parent="menu_universal_request_goals_tools" action="action_open_ost_tools" sequence="20"/>
 </odoo>
