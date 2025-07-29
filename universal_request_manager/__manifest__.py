@@ -15,7 +15,7 @@
         'views/code_book_proces.xml',
         'views/calendar_view.xml',
         'views/swot_item_kanban.xml',
-        'views/project_task_gap_view.xml',
+        'views/gap_analysis_template.xml',
         'views/universal_request_menus.xml',
         
     ],

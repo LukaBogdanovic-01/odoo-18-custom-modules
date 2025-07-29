@@ -1,0 +1,60 @@
+<odoo>
+    <record id="view_gap_analysis_template_form" model="ir.ui.view">
+        <field name="name">gap.analysis.template.form</field>
+        <field name="model">gap.analysis.template</field>
+        <field name="arch" type="xml">
+            <form string="GAP Šablon">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="project_id"/>
+                        <field name="x_gap_domain"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Trenutno stanje">
+                            <field name="x_gap_current_html"/>
+                        </page>
+                        <page string="Ciljano stanje">
+                            <field name="x_gap_target_html"/>
+                        </page>
+                        <page string="GAP">
+                            <field name="x_gap_gap_html"/>
+                        </page>
+                        <page string="Rješenja">
+                            <field name="x_gap_solutions_html"/>
+                        </page>
+                        <page string="Benefiti">
+                            <field name="x_gap_benefits"/>
+                        </page>
+                        <page string="Budzet">
+                            <field name="x_gap_budget"/>
+                        </page>
+                        <page string="Povezani zadaci">
+                            <field name="x_gap_related_tasks"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_gap_analysis_template_list" model="ir.ui.view">
+        <field name="name">gap.analysis.template.list</field>
+        <field name="model">gap.analysis.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="x_gap_domain"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_gap_analysis_templates" model="ir.actions.act_window">
+        <field name="name">GAP Šabloni</field>
+        <field name="res_model">gap.analysis.template</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+</odoo>

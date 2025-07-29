@@ -275,7 +275,7 @@ class SwotItem(models.Model):
     _description = 'SWOT Stavka'
 
     name = fields.Char(string='Naziv', required=True)
-    description = fields.Text(string='Opis')
+    description = fields.Html(string='Opis')
     
     type = fields.Selection([
         ('strength', 'Snaga'),
@@ -294,6 +294,22 @@ class SwotItem(models.Model):
     swot_analysis_id = fields.Many2one('swot.analysis', string="SWOT analizaaaaa", required=True, ondelete='cascade')
 
 
+    def action_create_task(self):
+        self.ensure_one()
+        project = self.project_id or self.swot_analysis_id.project_id
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Novi Zadak',
+            'res_model': 'project.task',
+            'view_mode': 'form',
+            'target': 'current',
+            'context': {
+                
+                'default_project_id': project.id if project else False,
+                'default_description': self.description,
+            }
+        }
 
     
 
@@ -302,72 +318,25 @@ class SwotItem(models.Model):
         return ['strength', 'weakness', 'opportunity', 'threat']
 
 
-class ProjectTask(models.Model):
-    _inherit = 'project.task'
+class GapAnalysisTemplate(models.Model):
+    _name = 'gap.analysis.template'
+    _description = 'GAP Analiza Šablon'
 
-    # GAP analiza polja
-    x_gap_area_description = fields.Text(string="Opis oblasti")
-    x_gap_team = fields.Selection([
-        ('hr', 'Ljudski resursi'),
-        ('it', 'IT'),
-        ('finance', 'Finansije'),
-        ('marketing', 'Marketing'),
-        ('other', 'Ostalo'),
-    ], string="Tim", tracking=True)
-
+    name = fields.Char(string="Naziv šablona", required=True)
+    project_id = fields.Many2one('project.project', string="Projekat", required=True)
     x_gap_domain = fields.Selection([
         ('procesi', 'Procesi'),
         ('tehnologija', 'Tehnologija'),
         ('organizacija', 'Organizacija'),
         ('produkti', 'Produkti'),
         ('drugo', 'Drugo'),
-    ], string="Oblast", tracking=True)
-
-    x_gap_quarter = fields.Selection([
-        ('q1', 'Q1'),
-        ('q2', 'Q2'),
-        ('q3', 'Q3'),
-        ('q4', 'Q4'),
-    ], string="Kvartal", tracking=True)
-    x_gap_target_state = fields.Text(string="Cilj koji želimo postići")
-    x_gap_current_state = fields.Text(string="Procjena trenutnog stanja")
-    x_gap_score = fields.Selection(
-        selection=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')],
-        string="Identifikovani GAP (0–5)"
-    )
-    x_gap_causes = fields.Text(string="Uzroci")
-    x_gap_solutions = fields.Text(string="Moguće mjere i rješenja")
-    x_gap_priority = fields.Selection(
-        selection=[('low', 'Niski'), ('medium', 'Srednji'), ('high', 'Visoki')],
-        string="Prioritet GAP-a"
-    )
-    x_gap_related_tasks = fields.Many2many(
-        'project.task', 'gap_task_rel', 'gap_id', 'task_id', string="Vezani zadaci"
-    )
-    x_gap_comments = fields.Text(string="Komentari / Napomene")
+    ], string="Oblast")
 
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        tasks = super().create(vals_list)
-
-        # Pronađi ili kreiraj tag "GAP analiza"
-        gap_tag = self.env['project.tags'].search([('name', '=', 'GAP analiza')], limit=1)
-        if not gap_tag:
-            gap_tag = self.env['project.tags'].create({'name': 'GAP analiza'})
-
-        # Svakom task-u dodaj taj tag
-        for task, vals in zip(tasks, vals_list):
-            task.tag_ids = [(4, gap_tag.id)]
-
-        return tasks
-
-    @api.onchange('x_gap_priority')
-    def _onchange_gap_priority_color(self):
-        priority_color_map = {
-            'high': 1,     # crvena
-            'medium': 3,   # narandžasta
-            'low': 10      # zelena
-        }
-        self.color = priority_color_map.get(self.x_gap_priority, 0)
-
+    x_gap_current_html = fields.Html(string="Trenutno stanje")
+    x_gap_target_html = fields.Html(string="Ciljano stanje")
+    x_gap_gap_html = fields.Html(string="GAP")
+    x_gap_solutions_html = fields.Html(string="Rješenja")
+    x_gap_benefits = fields.Html(string="Benefiti")
+    x_gap_budget = fields.Html(string="Budzet")
+    x_gap_related_tasks = fields.Many2many('project.task',string="Povezani zadaci")

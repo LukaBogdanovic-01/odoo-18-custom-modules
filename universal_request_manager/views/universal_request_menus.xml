@@ -14,7 +14,10 @@
     <menuitem id="menu_universal_request_library" name="Setup" parent="menu_universal_request_root" sequence="70"/>
     <menuitem id="menu_universal_request_help" name="Pomoć" parent="menu_universal_request_root" sequence="80"/>
 
-    
+    <!-- Za projekte -->
+    <menuitem id="menu_project_templates" name="Templejti" parent="project.menu_main_pm" sequence="25"/>
+    <!-- unutar templejta -->
+    <menuitem id="menu_project_template_gap_analysis" name="Gap analiza" parent="menu_project_templates" action="action_gap_analysis_templates" sequence="10"/>
 
     <!-- Stavke unutar Setupa -->
     <menuitem id="menu_request_type" name="Šabloni" parent="menu_universal_request_library" action="action_request_type" sequence="10"/>
