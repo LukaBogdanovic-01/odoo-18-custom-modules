@@ -1,4 +1,14 @@
 <odoo>
+
+    <!-- AKCIJA ZA GAP STAVKE -->
+    <record id="action_gap_analysis_items_filtered" model="ir.actions.act_window">
+        <field name="name">Oblasti GAP analize</field>
+        <field name="res_model">gap.analysis.item</field>
+        <field name="view_mode">kanban,form,list</field>
+        <field name="domain">[('gap_analysis_id', '=', active_id)]</field>
+        <field name="context">{'default_gap_analysis_id': active_id}</field>
+    </record>
+
     <!-- KANBAN PRIKAZ SVIH ANALIZA -->
     <record id="view_gap_analysis_kanban" model="ir.ui.view">
         <field name="name">gap.analysis.kanban</field>
@@ -105,15 +115,5 @@
     </field>
 </record>
 
-
-
-    <!-- AKCIJA ZA GAP STAVKE (opcionalno) -->
-    <record id="action_gap_analysis_items_filtered" model="ir.actions.act_window">
-        <field name="name">Oblasti GAP analize</field>
-        <field name="res_model">gap.analysis.item</field>
-        <field name="view_mode">kanban,form,list</field>
-        <field name="domain">[('gap_analysis_id', '=', active_id)]</field>
-        <field name="context">{'default_gap_analysis_id': active_id}</field>
-    </record>
 
 </odoo>
