@@ -16,6 +16,7 @@
         'views/calendar_view.xml',
         'views/swot_item_kanban.xml',
         'views/gap_analysis_template.xml',
+        'views/gap_analysis_template_ciljevi.xml',
         'views/universal_request_menus.xml',
         
     ],

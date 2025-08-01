@@ -1,0 +1,119 @@
+<odoo>
+    <!-- KANBAN PRIKAZ SVIH ANALIZA -->
+    <record id="view_gap_analysis_kanban" model="ir.ui.view">
+        <field name="name">gap.analysis.kanban</field>
+        <field name="model">gap.analysis</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="project_id"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card">
+                            <a type="action"
+                                name="%(action_gap_analysis_items_filtered)d"
+                            context="{'default_gap_analysis_id': id}"
+                            domain="[('gap_analysis_id', '=', id)]"
+                            class="d-block">
+                                <strong><field name="name"/></strong>
+                                <div>Projekat: <field name="project_id"/></div>
+                            </a>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_gap_analysis_list" model="ir.ui.view">
+        <field name="name">gap.analysis.list</field>
+        <field name="model">gap.analysis</field>
+        <field name="arch" type="xml">
+            <list string="GAP Analize">
+                <field name="name"/>
+                <field name="project_id"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!-- AKCIJA ZA GAP ANALIZU -->
+    <record id="action_gap_analysis" model="ir.actions.act_window">
+        <field name="name">GAP Analize</field>
+        <field name="res_model">gap.analysis</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+
+
+    <!-- KANBAN VIEW ZA GAP STAVKE -->
+    <record id="view_gap_analysis_item_kanban" model="ir.ui.view">
+        <field name="name">gap.analysis.item.kanban</field>
+        <field name="model">gap.analysis.item</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="type">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="description"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card">
+                            <strong><field name="name"/></strong>
+                            <div><field name="description"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- FORM VIEW ZA GAP STAVKU (ispravljen!) -->
+    <record id="view_gap_analysis_item_form" model="ir.ui.view">
+    <field name="name">gap.analysis.item.form</field>
+    <field name="model">gap.analysis.item</field>
+    <field name="arch" type="xml">
+        <form string="Aspekt GAP analize">
+            <sheet>
+                <group col="4">
+                    <field name="name"/>
+                    <field name="gap_analysis_id" readonly="1"/>
+                    <field name="project_id" readonly="1"/>
+                </group>
+
+                <group>
+                    <field name="description"/>
+                </group>
+
+                <group string="Povezani zadaci">
+                    <field name="x_gap_related_tasks"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="view_gap_analysis_item_tree" model="ir.ui.view">
+    <field name="name">gap.analysis.item.list</field>
+    <field name="model">gap.analysis.item</field>
+    <field name="arch" type="xml">
+        <list string="Oblasti GAP analize">
+            <field name="name"/>
+            <field name="type"/>
+            <field name="gap_analysis_id"/>
+            <field name="project_id"/>
+        </list>
+    </field>
+</record>
+
+
+
+    <!-- AKCIJA ZA GAP STAVKE (opcionalno) -->
+    <record id="action_gap_analysis_items_filtered" model="ir.actions.act_window">
+        <field name="name">Oblasti GAP analize</field>
+        <field name="res_model">gap.analysis.item</field>
+        <field name="view_mode">kanban,form,list</field>
+        <field name="domain">[('gap_analysis_id', '=', active_id)]</field>
+        <field name="context">{'default_gap_analysis_id': active_id}</field>
+    </record>
+
+</odoo>

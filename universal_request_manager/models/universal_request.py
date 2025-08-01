@@ -340,3 +340,89 @@ class GapAnalysisTemplate(models.Model):
     x_gap_benefits = fields.Html(string="Benefiti")
     x_gap_budget = fields.Html(string="Budzet")
     x_gap_related_tasks = fields.Many2many('project.task',string="Povezani zadaci")
+
+
+
+
+
+
+
+
+# OVO JE ZA GAP ANALIZU U CILJEVIMA
+
+class GapAnalysis(models.Model):
+    _name = 'gap.analysis'
+    _description = 'GAP Analiza'
+
+    name = fields.Char(string="Naziv GAP Analize", required=True)
+    project_id = fields.Many2one('project.project', string="Projekat", required=True)
+
+
+
+    item_ids = fields.One2many('gap.analysis.item', 'gap_analysis_id', string="Oblasti GAP Analize")
+
+
+class GapAnalysisItem(models.Model):
+    _name = 'gap.analysis.item'
+    _description = 'GAP Oblast'
+
+    name = fields.Char(string='Naziv', required=True)
+    description = fields.Html(string='Opis')
+
+    type = fields.Selection([
+        ('current', 'Trenutno stanje'),
+        ('target', 'Ciljano stanje'),
+        ('gap', 'GAP'),
+        ('solution', 'Rješenje'),
+        ('benefit', 'Benefit'),
+        ('budget', 'Budžet')
+    ], string='Tip', default="current", required=True, group_expand='_group_expand_type')
+
+    gap_analysis_id = fields.Many2one('gap.analysis', string="GAP analiza", required=True, ondelete='cascade')
+    project_id = fields.Many2one('project.project', string='Projekat')
+
+    x_gap_related_tasks = fields.Many2many('project.task', string="Povezani zadaci")
+    
+
+    @api.onchange('gap_analysis_id')
+    def _onchange_gap_analysis_id(self):
+        if self.gap_analysis_id:
+            self.project_id = self.gap_analysis_id.project_id
+
+    @api.model
+    def _group_expand_type(self, values, domain, order=None):
+        return ['current', 'target', 'gap', 'solution', 'benefit', 'budget']
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super(GapAnalysisItem, self).create(vals_list)
+
+        for record in records:
+            # Ako project_id nije postavljen, uzmi iz gap_analysis_id
+            if not record.project_id and record.gap_analysis_id.project_id:
+                record.project_id = record.gap_analysis_id.project_id
+
+            # Kreiraj duplikate u ostalim kolonama
+            if record.gap_analysis_id and record.type:
+                all_types = self._group_expand_type([], [], [])
+                other_types = [t for t in all_types if t != record.type]
+
+                for t in other_types:
+                    exists = self.search_count([
+                        ('gap_analysis_id', '=', record.gap_analysis_id.id),
+                        ('name', '=', record.name),
+                        ('type', '=', t)
+                    ])
+                    if exists:
+                        continue
+
+                    self.create({
+                        'name': record.name,
+                        'type': t,
+                        'gap_analysis_id': record.gap_analysis_id.id,
+                        'project_id': record.project_id.id,
+                    })
+
+        return records
+
+

@@ -46,5 +46,13 @@ access_swot_item_admin,access.swot.item.admin,model_swot_item,base.group_system,
 access_swot_analysis_user,access.swot.analysis.user,model_swot_analysis,base.group_user,1,1,1,1
 access_swot_analysis_admin,access.swot.analysis.admin,model_swot_analysis,base.group_system,1,1,1,1
 
-access_gap_analysis_user,GAP Analysis Template - User,model_gap_analysis_template,base.group_user,1,1,1,0
-access_gap_analysis_admin,GAP Analysis Template - Admin,model_gap_analysis_template,base.group_system,1,1,1,1
+access_gap_analysis_template_user,GAP Analiza Template - User,model_gap_analysis_template,base.group_user,1,1,1,0
+access_gap_analysis_template_admin,GAP Analiza Template - Admin,model_gap_analysis_template,base.group_system,1,1,1,1
+
+access_gap_analysis_user,GAP Analiza - User,model_gap_analysis,base.group_user,1,1,1,0
+access_gap_analysis_admin,GAP Analiza - Admin,model_gap_analysis,base.group_system,1,1,1,1
+
+access_gap_analysis_item_user,GAP Analiza Stavka - User,model_gap_analysis_item,base.group_user,1,1,1,0
+access_gap_analysis_item_admin,GAP Analiza Stavka - Admin,model_gap_analysis_item,base.group_system,1,1,1,1
+
+
