@@ -56,3 +56,6 @@ access_gap_analysis_item_user,GAP Analiza Stavka - User,model_gap_analysis_item,
 access_gap_analysis_item_admin,GAP Analiza Stavka - Admin,model_gap_analysis_item,base.group_system,1,1,1,1
 
 
+
+access_template_plan_user,access.template.plan.user,model_template_plan,base.group_user,1,1,1,1
+access_template_plan_line_user,access.template.plan.line.user,model_template_plan_line,base.group_user,1,1,1,1

@@ -426,3 +426,37 @@ class GapAnalysisItem(models.Model):
         return records
 
 
+
+class TemplatePlan(models.Model):
+    _name = 'template.plan'
+    _description = 'Template Plan'
+
+    name = fields.Char(string='Plan Name', required=True)
+    line_ids = fields.One2many('template.plan.line', 'plan_id', string='Plan Lines')
+    recapitulation = fields.Html(string="Rekapitulacija",related='line_ids.recapitulation',readonly=False)
+    task_ids = fields.Many2many('project.task',string="Povezani zadaci")
+
+
+
+class TemplatePlanLine(models.Model):
+    _name = 'template.plan.line'
+    _description = 'Template Plan Line'
+
+    plan_id = fields.Many2one('template.plan', string='Plan', ondelete='cascade')
+    position = fields.Text(string='Pozicija')
+    goals = fields.Text(string='Ciljevi')
+    realisation = fields.Text(string='Realizacija')
+    deviations = fields.Text(string='Odstupanja')
+    notes = fields.Text(string='Napomene')
+    recapitulation = fields.Html(string='Rekapitulacija')
+
+
+
+
+
+
+
+
+
+
+
