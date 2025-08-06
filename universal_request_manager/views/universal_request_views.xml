@@ -98,7 +98,7 @@
         <field name="name">universal.request.kanban</field>
         <field name="model">universal.request</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="status">
+            <kanban default_group_by="status" default_order="write_date desc">
                 <field name="priority"/>
                 <field name="status"/>
                 <field name="state"/>

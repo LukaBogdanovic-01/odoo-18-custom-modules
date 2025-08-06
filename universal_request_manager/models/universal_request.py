@@ -5,7 +5,8 @@ class UniversalRequest(models.Model):
     _name = 'universal.request'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Univerzalni poslovni zahtjev'
-    _order = "status_sequence, status, sequence, id"
+    _order = "status_sequence, status, write_date desc, sequence"
+
 
 
     name = fields.Char(string="Naziv zadatka", required=True, tracking=True)
@@ -455,8 +456,143 @@ class TemplatePlanLine(models.Model):
 
 
 
+class DigimenLinkbox(models.Model):
+    _name = 'digimen.linkbox'
+    _description = 'Centralni registar linkova'
+    _order = 'category_id, write_date desc, name'
+
+    name = fields.Char(string="Naziv linka", required=True)
+    url = fields.Char(string="URL", required=True)
+    description = fields.Text(string="Opis")
+    link_type = fields.Selection([
+        ('document', 'Dokument'),
+        ('video', 'Video'),
+        ('tool', 'Interni alat'),
+        ('wiki', 'Wiki'),
+        ('product', 'Proizvod'),
+        ('url', 'URL'),
+    ], string="Tip linka")
+    project_id = fields.Many2one('project.project', string="Projekat")
+    related_model_id = fields.Selection([
+        ('task', 'Zadatak'),
+        ('partner', 'Partner'),
+    ], string="Poveži sa", required=True)
+    related_task_id = fields.Many2one('project.task', string="Zadatak", domain="[('project_id', '=', project_id)]")
+    related_partner_id = fields.Many2one('res.partner', string="Partner")
+    category_id = fields.Many2one('digimen.linkbox.category', string="Kategorija", group_expand='_expand_category')
+    tag_ids = fields.Many2many('project.tags', string="Tagovi")
+    is_favorite = fields.Boolean(string="Omiljeni")
+    
+    available_partner_ids = fields.Many2many(
+        'res.partner',
+        compute='_compute_available_partners',
+        string='Dostupni partneri'
+    )
+
+    @api.model
+    def _expand_category(self, categories, domain, order=None):
+        return self.env['digimen.linkbox.category'].search([], order=order)
+
+    @api.depends('project_id')
+    def _compute_available_partners(self):
+        for rec in self:
+            partner = rec.project_id.partner_id
+            rec.available_partner_ids = partner if partner else False
+
+
+    def action_open_link(self):
+        return {
+            'type': 'ir.actions.act_url',
+            'url': self.url,
+            'target': 'new'
+        }
+
+
+    def action_create_task(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Novi zadatak',
+            'res_model': 'project.task',
+            'view_mode': 'form',
+            'target': 'current',
+            'context': {
+                'default_name': self.name,
+                'default_description': self.description,
+                'default_related_model_id': '%s,%s' % (self._name, self.id)
+            }
+        }
+
+
+class DigimenLinkboxCategory(models.Model):
+    _name = 'digimen.linkbox.category'
+    _description = 'Kategorije linkova'
+    _order = 'name'
+    _sql_constraints = [
+        ('name_uniq', 'unique(name)', 'Naziv kategorije mora biti jedinstven.')
+    ]
+
+    name = fields.Char(string="Naziv kategorije", required=True)
+    description = fields.Text(string="Opis")
 
 
 
+class ProjectTask(models.Model):
+    _inherit = 'project.task'
 
+    linkbox_ids = fields.One2many(
+        comodel_name='digimen.linkbox',
+        inverse_name='id',
+        compute='_compute_linkbox_ids',
+        string="Povezani linkovi"
+    )
+
+    def _compute_linkbox_ids(self):
+        for record in self:
+            if not record.id:
+                record.linkbox_ids = []
+            else:
+                record.linkbox_ids = self.env['digimen.linkbox'].search([
+                    ('related_model_id', '=', 'task'),
+                    ('related_task_id', '=', record.id)
+                ])
+
+
+
+class ProjectProject(models.Model):
+    _inherit = 'project.project'
+
+    linkbox_ids = fields.One2many(
+        comodel_name='digimen.linkbox',
+        inverse_name='id',
+        compute='_compute_linkbox_ids',
+        string="Povezani linkovi"
+    )
+
+    def _compute_linkbox_ids(self):
+        for project in self:
+            project.linkbox_ids = self.env['digimen.linkbox'].search([
+                ('project_id', '=', project.id)
+            ])
+
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    linkbox_ids = fields.One2many(
+        comodel_name='digimen.linkbox',
+        inverse_name='id',
+        compute='_compute_linkbox_ids',
+        string="Povezani linkovi"
+    )
+
+    def _compute_linkbox_ids(self):
+        for partner in self:
+            if not partner.id:
+                partner.linkbox_ids = []
+            else:
+                partner.linkbox_ids = self.env['digimen.linkbox'].search([
+                    ('related_model_id', '=', 'partner'),
+                    ('related_partner_id', '=', partner.id)
+                ])
 

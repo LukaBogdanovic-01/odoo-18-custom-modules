@@ -13,6 +13,8 @@
     <menuitem id="menu_universal_request_dashboard" name="Tabla" parent="menu_universal_request_root" action="action_open_custom_dashboard" sequence="60"/>
     <menuitem id="menu_universal_request_library" name="Setup" parent="menu_universal_request_root" sequence="70"/>
     <menuitem id="menu_universal_request_help" name="Pomoć" parent="menu_universal_request_root" sequence="80"/>
+    <menuitem id="menu_digimen_linkbox" name="Linkbox" parent="menu_universal_request_root" sequence="90"/>
+
 
     <!-- Za projekte -->
     <menuitem id="menu_project_templates" name="Templejti" parent="project.menu_main_pm" sequence="25"/>
@@ -49,4 +51,8 @@
     <menuitem id="menu_universal_request_goals_tools_swot" name="SWOT" parent="menu_universal_request_goals_tools" action="action_swot_analysis" sequence="10"/>
     <menuitem id="menu_universal_request_goals_tools_gap" name="GAP" parent="menu_universal_request_goals_tools" action="action_gap_analysis" sequence="15"/>
     <menuitem id="menu_universal_request_goals_tools_ost" name="OST" parent="menu_universal_request_goals_tools" action="action_open_ost_tools" sequence="20"/>
+
+    <!-- Podmeni za Linkove -->
+    <menuitem id="menu_digimen_linkbox_links" name="Linkovi" parent="menu_digimen_linkbox" sequence="10" action="action_digimen_linkbox"/>
+    <menuitem id="menu_digimen_linkbox_categories" name="Kategorije" parent="menu_digimen_linkbox" sequence="20" action="action_linkbox_category"/>
 </odoo>
