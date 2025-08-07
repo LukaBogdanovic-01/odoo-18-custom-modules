@@ -11,7 +11,6 @@
                         <field name="name"/>
                         <field name="description"/>
                         <field name="type"/>
-                        <field name="priority"/>
                         <button name="action_create_task"
                             string="Kreiraj Zadak"
                             type="object"
@@ -30,7 +29,6 @@
                 <field name="name"/>
                 <field name="description"/>
                 <field name="type"/>
-                <field name="priority"/>
                 <field name="project_id"/>
 
                 <groups>
@@ -39,10 +37,9 @@
                     <group name="opportunity" string="Prilike"/>
                     <group name="threat" string="Prijetnje"/>
                 </groups>
-
                 <templates>
                     <t t-name="card">
-                        <div t-attf-class="oe_kanban_global_click  {{ record.priority.raw_value }}">
+                        <div t-attf-class="oe_kanban_global_click" style="height: 6em; overflow: hidden;">
                             <div class="o_kanban_details">
                                 <strong><field name="name"/></strong>
                                 <div><field name="description"/></div>

@@ -266,14 +266,18 @@ class SwotAnalysis(models.Model):
     _name = 'swot.analysis'
     _description = 'SWOT Analiza'
 
+
     name = fields.Char(string="Naziv", required=True)
     project_id = fields.Many2one('project.project', string="Projekat", required=True)
     item_ids = fields.One2many('swot.item', 'swot_analysis_id', string="Stavke SWOT-a")
 
 
+
 class SwotItem(models.Model):
     _name = 'swot.item'
     _description = 'SWOT Stavka'
+    _order = 'type, sequence, id'
+
 
     name = fields.Char(string='Naziv', required=True)
     description = fields.Html(string='Opis')
@@ -285,14 +289,12 @@ class SwotItem(models.Model):
         ('threat', 'Prijetnja')
     ], string='Tip', required=True, group_expand='_group_expand_type')
 
-    priority = fields.Selection([
-        ('0', 'Niska'),
-        ('1', 'Srednja'),
-        ('2', 'Visoka')
-    ], string='Prioritet', default='1')
+
 
     project_id = fields.Many2one('project.project', string='Projekat')
     swot_analysis_id = fields.Many2one('swot.analysis', string="SWOT analizaaaaa", required=True, ondelete='cascade')
+    sequence = fields.Integer(string='Redoslijed', default=10)
+
 
 
     def action_create_task(self):
@@ -366,6 +368,8 @@ class GapAnalysis(models.Model):
 class GapAnalysisItem(models.Model):
     _name = 'gap.analysis.item'
     _description = 'GAP Oblast'
+    _order = 'sequence, id'
+
 
     name = fields.Char(string='Naziv', required=True)
     description = fields.Html(string='Opis')
@@ -383,6 +387,8 @@ class GapAnalysisItem(models.Model):
     project_id = fields.Many2one('project.project', string='Projekat')
 
     x_gap_related_tasks = fields.Many2many('project.task', string="Povezani zadaci")
+    sequence = fields.Integer(string='Redoslijed', default=10)
+
     
 
     @api.onchange('gap_analysis_id')
@@ -425,6 +431,11 @@ class GapAnalysisItem(models.Model):
                     })
 
         return records
+
+    
+
+
+
 
 
 

@@ -67,7 +67,7 @@
                 <field name="description"/>
                 <templates>
                     <t t-name="card">
-                        <div class="oe_kanban_card">
+                        <div class="oe_kanban_card" style="height: 6em; overflow: hidden;">
                             <strong><field name="name"/></strong>
                             <div><field name="description"/></div>
                         </div>
@@ -79,41 +79,44 @@
 
     <!-- FORM VIEW ZA GAP STAVKU (ispravljen!) -->
     <record id="view_gap_analysis_item_form" model="ir.ui.view">
-    <field name="name">gap.analysis.item.form</field>
-    <field name="model">gap.analysis.item</field>
-    <field name="arch" type="xml">
-        <form string="Aspekt GAP analize">
-            <sheet>
-                <group col="4">
-                    <field name="name"/>
-                    <field name="gap_analysis_id" readonly="1"/>
-                    <field name="project_id" readonly="1"/>
-                </group>
+        <field name="name">gap.analysis.item.form</field>
+        <field name="model">gap.analysis.item</field>
+        <field name="arch" type="xml">
+            <form string="Aspekt GAP analize">
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="gap_analysis_id" readonly="1"/>
+                        <field name="project_id" readonly="1"/>
+                    </group>
 
-                <group>
-                    <field name="description"/>
-                </group>
+                    <notebook>
+                        <page string="Opis">
+                            <field name="description"/>
+                        </page>
 
-                <group string="Povezani zadaci">
-                    <field name="x_gap_related_tasks"/>
-                </group>
-            </sheet>
-        </form>
-    </field>
-</record>
+                        <page string="Povezani zadaci">
+                            <field name="x_gap_related_tasks"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-<record id="view_gap_analysis_item_tree" model="ir.ui.view">
-    <field name="name">gap.analysis.item.list</field>
-    <field name="model">gap.analysis.item</field>
-    <field name="arch" type="xml">
-        <list string="Oblasti GAP analize">
-            <field name="name"/>
-            <field name="type"/>
-            <field name="gap_analysis_id"/>
-            <field name="project_id"/>
-        </list>
-    </field>
-</record>
+
+    <record id="view_gap_analysis_item_tree" model="ir.ui.view">
+        <field name="name">gap.analysis.item.list</field>
+        <field name="model">gap.analysis.item</field>
+        <field name="arch" type="xml">
+            <list string="Oblasti GAP analize">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="gap_analysis_id"/>
+                <field name="project_id"/>
+            </list>
+        </field>
+    </record>
 
 
 </odoo>
