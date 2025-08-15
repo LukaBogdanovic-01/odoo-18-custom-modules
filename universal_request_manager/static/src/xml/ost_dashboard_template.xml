@@ -1,0 +1,61 @@
+<t t-name="universal_request_manager.ost_dashboard_template" owl="1">
+    <div class="container mt-4">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold" style="color: #6f42c1;">OST ALAT</h3>
+            <p style="color: #666;">Klikom na karticu otvara se kanban za odabranu karticu.</p>
+        </div>
+        <div class="row">
+            <!-- Kartica 1 -->
+            <div class="col-md-3 mb-4">
+                <a href="/web#action=universal_request_manager.action_ost_outcome" style="text-decoration: none; color: inherit;">
+                    <div class="card text-center shadow-sm rounded-4" style="background-color: #f4f0fa; min-height: 180px;">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <div style="font-size: 28px; color: #6f42c1;">🎯</div>
+                            <h5 class="mt-3 fw-bold" style="color: #6f42c1;">Ciljevi</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Kartica 2 -->
+            <div class="col-md-3 mb-4">
+                <a href="/web#action=universal_request_manager.action_ost_opportunity" style="text-decoration: none; color: inherit;">
+                    <div class="card text-center shadow-sm rounded-4" style="background-color: #f4f0fa; min-height: 180px;">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <div style="font-size: 28px; color: #6f42c1;">💼</div>
+                            <h5 class="mt-3 fw-bold" style="color: #6f42c1;">Prilike</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Kartica 3 -->
+            <div class="col-md-3 mb-4">
+                <a href="/web#action=universal_request_manager.action_ost_solution" style="text-decoration: none; color: inherit;">
+                    <div class="card text-center shadow-sm rounded-4" style="background-color: #f4f0fa; min-height: 180px;">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <div style="font-size: 28px; color: #6f42c1;">💡</div>
+                            <h5 class="mt-3 fw-bold" style="color: #6f42c1;">Rješenja</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Kartica 4 -->
+            <div class="col-md-3 mb-4">
+                <a href="/web#action=universal_request_manager.action_ost_experiment" style="text-decoration: none; color: inherit;">
+                    <div class="card text-center shadow-sm rounded-4" style="background-color: #f4f0fa; min-height: 180px;">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <div style="font-size: 28px; color: #6f42c1;">🔬</div>
+                            <h5 class="mt-3 fw-bold" style="color: #6f42c1;">Eksperimenti</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="text-center mb-4">
+            <p style="color: #666;">Ovdje ispod se moze dodati neko tekstualno uputstvo recimo za korišćenje ili opis svrhe korišćenja</p>
+        </div>
+    </div>
+</t>

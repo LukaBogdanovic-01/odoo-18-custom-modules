@@ -95,7 +95,7 @@
                             <field name="description"/>
                         </page>
 
-                        <page string="Povezani zadaci">
+                        <page string="Zadaci">
                             <field name="x_gap_related_tasks"/>
                         </page>
                     </notebook>

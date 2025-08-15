@@ -18,17 +18,26 @@
         'views/gap_analysis_template.xml',
         'views/gap_analysis_template_ciljevi.xml',
         'views/template_plan_views.xml',
+        'views/ost_views_and_actions.xml',
         'views/linkbox_views.xml',
+        'views/portal_card_view.xml',
+        'views/bmc_views_and_actions.xml',
+        'views/lc_views_and_actions.xml',
         'views/universal_request_menus.xml',
         
     ],
     'assets': {
         'web.assets_backend': [
+            'universal_request_manager/static/src/js/ost_dashboard.js',
             'universal_request_manager/static/src/css/universal_request.css',
+            'universal_request_manager/static/src/xml/ost_dashboard_template.xml',
         ],
         'web.assets_common': [
             'universal_request_manager/static/src/css/universal_request.css',
-        ]
+        ],
+        'web.assets_qweb': [
+            'universal_request_manager/static/src/xml/ost_dashboard_template.xml',
+        ],
     },
     'installable': True,
     'application': True,

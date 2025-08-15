@@ -1,0 +1,138 @@
+<odoo>
+    <template id="portal_my_home_inherit" inherit_id="portal.portal_my_home" name="My Custom Portal Card">
+        <xpath expr="//div[@id='portal_common_category']" position="inside">
+            <div class="o_portal_index_card col-md-6 order-2">
+                <a href="/my/requests" title="My Custom Page" class="d-flex gap-2 gap-md-3 py-3 pe-2 px-md-3 h-100 rounded text-decoration-none bg-100">
+                    <div class="o_portal_icon d-block align-self-start">
+                        <i class="fa fa-industry fa-2x text-primary" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="mt-0 mb-1 fs-5 fw-normal lh-1">
+                            <span>DIGIMEN</span>
+                        </div>
+                        <div class="opacity-75">
+                            Aktivnosti preduzeća.
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="portal_universal_request_list" name="Universal Requests Portal List">
+    <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs" t-value="[
+                ('/my', 'My Account'),
+                (request.httprequest.path, 'Moji zadaci')
+            ]"/>
+
+            <div class="o_portal_my_doc">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="mb-0">Moje aktivnosti</h3>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Naziv</th>
+                            <th>Status</th>
+                            <th>Prioritet</th>
+                            <th>Rok</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="requests" t-as="req">
+                            <tr>
+                                <td>
+                                    <a t-attf-href="/my/request/#{req.id}">
+                                        <t t-esc="req.name"/>
+                                    </a>
+                                </td>
+                                <td><t t-esc="req.status"/></td>
+                                <td><t t-esc="req.priority"/></td>
+                                <td><t t-esc="req.deadline"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <t t-if="not requests">
+                    <p>Nema dodeljenih aktivnosti.</p>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_universal_request_detail" name="Universal Request Detail">
+    <t t-call="portal.portal_layout">
+        <t t-set="breadcrumbs" t-value="[
+            ('/my', 'My Account'),
+            ('/my/requests', 'Moji zadaci'),
+            (request.httprequest.path, req.name)
+        ]"/>
+
+        <div class="container">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <t t-esc="req.name"/>
+                    </h3>
+
+                    <div class="row mb-2">
+                        <div class="col-md-6 mb-3">
+                            <strong>Status:</strong>
+                            <span class="badge text-bg-light"><t t-esc="req.status"/></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Prioritet:</strong>
+                            <span class="badge bg-primary text-uppercase"><t t-esc="req.priority"/></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Zaduženi korisnici:</strong>
+                            <t t-foreach="req.assigned_user_id" t-as="user" t-separator=", ">
+                                <span><t t-esc="user.name"/></span>
+                            </t>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Rok:</strong> <t t-esc="req.deadline"/>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Tagovi:</strong>
+                            <t t-foreach="req.tag_ids" t-as="tag">
+                                <span class="badge rounded-pill text-bg-secondary me-1"><t t-esc="tag.name"/></span>
+                            </t>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Proces:</strong> <t t-esc="req.proces.name"/>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>CRM Lead:</strong> <t t-esc="req.crm_lead_id.name"/>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Direktorijum dokumenata:</strong> <t t-esc="req.document_directory_id.name"/>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Projekat:</strong> <t t-esc="req.project_id.name"/>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Dokument:</strong>
+                            <div t-out="req.attachment_preview_url"/>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Ciljevi:</strong> <t t-esc="req.goals_id.name"/>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div>
+                        <h4 class="mb-2">Opis</h4>
+                        <div class="border p-3 rounded bg-light">
+                            <div t-out="req.description"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+
+</odoo>

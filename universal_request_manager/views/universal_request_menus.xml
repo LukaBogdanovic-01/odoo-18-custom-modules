@@ -5,15 +5,20 @@
     <!-- Glavne sekcije -->
     <menuitem id="menu_universal_request" name="Aktivnosti" parent="menu_universal_request_root" action="action_universal_request" sequence="10"/>
     <menuitem id="menu_universal_request_calendar" name="Kalendar" parent="menu_universal_request_root" action="action_universal_request_calendar" sequence="20"/>
-    <menuitem id="menu_universal_request_projects" name="Projekti" parent="menu_universal_request_root" action="project.open_view_project_all" sequence="25"/>
     <menuitem id="menu_universal_request_sales_root" name="Prodaja" parent="menu_universal_request_root" sequence="30"/>
-    <menuitem id="menu_universal_request_support" name="Podrška" parent="menu_universal_request_root" action="action_open_montexel_helpdesk" sequence="40"/>
-    <menuitem id="menu_universal_request_documents" name="Dokumenti" parent="menu_universal_request_root" action="action_document_directory" sequence="50"/>
-    <menuitem id="menu_universal_request_goals_root" name="Ciljevi" parent="menu_universal_request_root" sequence="55"/>
+    <menuitem id="menu_universal_request_spec_app" name="Spec. App" parent="menu_universal_request_root" sequence="40"/>
+    <menuitem id="menu_universal_request_goals_tools" name="Biznis alati" parent="menu_universal_request_root" sequence="50"/>
     <menuitem id="menu_universal_request_dashboard" name="Tabla" parent="menu_universal_request_root" action="action_open_custom_dashboard" sequence="60"/>
     <menuitem id="menu_universal_request_library" name="Setup" parent="menu_universal_request_root" sequence="70"/>
     <menuitem id="menu_universal_request_help" name="Pomoć" parent="menu_universal_request_root" sequence="80"/>
-    <menuitem id="menu_digimen_linkbox" name="Linkbox" parent="menu_universal_request_root" sequence="90"/>
+
+
+    <!-- SPEC.APP -->
+    <menuitem id="menu_universal_request_projects" name="Projekti" parent="menu_universal_request_spec_app" action="project.open_view_project_all" sequence="1"/>
+    <menuitem id="menu_universal_request_support" name="Održavanje" parent="menu_universal_request_spec_app" action="action_open_montexel_helpdesk" sequence="2"/>
+    <menuitem id="menu_universal_request_crm" name="CRM" parent="menu_universal_request_spec_app" action="crm.crm_lead_all_leads" sequence="3"/>
+    <menuitem id="menu_universal_request_documents" name="Dokumenti" parent="menu_universal_request_spec_app" action="action_document_directory" sequence="4"/>
+    <menuitem id="menu_universal_request_goals_root" name="Ciljevi" parent="menu_universal_request_spec_app" sequence="5"/>
 
 
     <!-- Za projekte -->
@@ -22,19 +27,21 @@
     <menuitem id="menu_project_template_gap_analysis" name="Gap analiza" parent="menu_project_templates" action="action_gap_analysis_templates" sequence="10"/>
     <menuitem id="menu_template_plan_items" name="Templejt" parent="menu_project_templates" action="action_template_plan" sequence="20"/>
 
+
     <!-- Stavke unutar Setupa -->
     <menuitem id="menu_request_type" name="Šabloni" parent="menu_universal_request_library" action="action_request_type" sequence="10"/>
     <menuitem id="menu_request_code" name="Ciljevi" parent="menu_universal_request_library" action="action_code_book" sequence="20"/>
     <menuitem id="menu_request_code_proces" name="Procesi" parent="menu_universal_request_library" action="action_code_book_proces" sequence="30"/>
+
+
     <!-- Stavke unutar Prodaje -->
-    <menuitem id="menu_universal_request_contacts" name="Kontakti" parent="menu_universal_request_sales_root" action="contacts.action_contacts" sequence="10"/>
-    <menuitem id="menu_universal_request_sales" name="Ponude" parent="menu_universal_request_sales_root" action="sale.action_quotations" sequence="20"/>
-    <menuitem id="menu_universal_request_crm" name="CRM" parent="menu_universal_request_sales_root" action="crm.crm_lead_all_leads" sequence="30"/>
-    <menuitem id="menu_universal_request_survey" name="Ankete" parent="menu_universal_request_sales_root" action="survey.action_survey_form" sequence="40"/>
-    <menuitem id="menu_universal_request_portal" name="Portal" parent="menu_universal_request_sales_root" action="action_open_montexel_roi" sequence="50"/>
-    <menuitem id="menu_universal_request_pricelist" name="Cjenovnik" parent="menu_universal_request_sales_root" action="action_open_montexel_pricelist" sequence="60"/>
-    <menuitem id="menu_universal_request_website" name="Websajt" parent="menu_universal_request_sales_root" action="action_open_montexel_website" sequence="70"/>
-    <menuitem id="menu_universal_request_marketing" name="Marketing" parent="menu_universal_request_sales_root" action="action_open_marketing" sequence="80"/>
+    <menuitem id="menu_universal_request_contacts" name="Kontakti" parent="menu_universal_request_sales_root" action="contacts.action_contacts" sequence="1"/>
+    <menuitem id="menu_universal_request_sales" name="Ponude" parent="menu_universal_request_sales_root" action="sale.action_quotations" sequence="2"/>
+    <menuitem id="menu_universal_request_survey" name="Ankete" parent="menu_universal_request_sales_root" action="survey.action_survey_form" sequence="3"/>
+    <menuitem id="menu_universal_request_portal" name="Portal" parent="menu_universal_request_sales_root" action="action_open_montexel_roi" sequence="4"/>
+    <menuitem id="menu_universal_request_pricelist" name="Cjenovnik" parent="menu_universal_request_sales_root" action="action_open_montexel_pricelist" sequence="5"/>
+    <menuitem id="menu_universal_request_website" name="Websajt" parent="menu_universal_request_sales_root" action="action_open_montexel_website" sequence="6"/>
+    <menuitem id="menu_universal_request_marketing" name="Marketing" parent="menu_universal_request_sales_root" action="action_open_marketing" sequence="7"/>
 
 
     <!-- Podmeniji unutar Pomoći -->
@@ -43,14 +50,27 @@
     <menuitem id="menu_universal_request_use_case" name="Use case" parent="menu_universal_request_help" action="action_empty_placeholder"  sequence="30"/>
     <menuitem id="menu_universal_request_eduplatform" name="Eduplatforma" parent="menu_universal_request_help" action="action_help_eduplatform" sequence="40"/>
 
+
     <!-- Podmeniji unutar 'Ciljevi' -->
     <menuitem id="menu_universal_request_goals_okr" name="OKR Ciljevi" parent="menu_universal_request_goals_root" action="action_open_okr_goals" sequence="10"/>
-    <menuitem id="menu_universal_request_goals_tools" name="Biznis alati" parent="menu_universal_request_goals_root" sequence="20"/>
+    
 
     <!-- Grananje iz 'Biznis alati' -->
     <menuitem id="menu_universal_request_goals_tools_swot" name="SWOT" parent="menu_universal_request_goals_tools" action="action_swot_analysis" sequence="10"/>
     <menuitem id="menu_universal_request_goals_tools_gap" name="GAP" parent="menu_universal_request_goals_tools" action="action_gap_analysis" sequence="15"/>
-    <menuitem id="menu_universal_request_goals_tools_ost" name="OST" parent="menu_universal_request_goals_tools" action="action_open_ost_tools" sequence="20"/>
+    <menuitem id="menu_universal_request_goals_tools_ost" name="OST" parent="menu_universal_request_goals_tools" action="universal_request_manager.action_ost_dashboard" sequence="20"/>
+    <menuitem id="menu_universal_request_goals_tools_bmc" name="BMC" parent="menu_universal_request_goals_tools" action="action_bmc_canvas" sequence="30"/>
+    <menuitem id="menu_universal_request_goals_tools_lc" name="LC" parent="menu_universal_request_goals_tools" action="action_lc_canvas" sequence="35"/>
+    <menuitem id="menu_digimen_linkbox" name="Linkbox" parent="menu_universal_request_goals_tools" sequence="40"/>
+
+
+    <!-- Podmeni za OST -->
+    <menuitem id="menu_ost_dashboard" name="Dashboard" parent="menu_universal_request_goals_tools_ost" action="universal_request_manager.action_ost_dashboard" sequence="1"/>
+    <menuitem id="menu_ost_outcome" name="Outcomes" parent="menu_universal_request_goals_tools_ost" action="action_ost_outcome" sequence="10"/>
+    <menuitem id="menu_ost_opportunity" name="Opportunities" parent="menu_universal_request_goals_tools_ost" action="action_ost_opportunity" sequence="20"/>
+    <menuitem id="menu_ost_solution" name="Solutions" parent="menu_universal_request_goals_tools_ost" action="action_ost_solution" sequence="30"/>
+    <menuitem id="menu_ost_experiment" name="Experiments" parent="menu_universal_request_goals_tools_ost" action="action_ost_experiment" sequence="40"/>
+
 
     <!-- Podmeni za Linkove -->
     <menuitem id="menu_digimen_linkbox_links" name="Linkovi" parent="menu_digimen_linkbox" sequence="10" action="action_digimen_linkbox"/>

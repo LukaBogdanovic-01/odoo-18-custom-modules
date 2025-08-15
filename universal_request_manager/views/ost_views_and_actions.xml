@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- OPŠTE AKCIJE (za meni/dash) -->
+
+  <record id="action_ost_outcome" model="ir.actions.act_window">
+    <field name="name">Ciljevi</field>
+    <field name="res_model">ost.outcome</field>
+    <field name="view_mode">kanban,list,form</field>
+  </record>
+
+  <record id="action_ost_opportunity" model="ir.actions.act_window">
+    <field name="name">Prilike</field>
+    <field name="res_model">ost.opportunity</field>
+    <field name="view_mode">kanban,list,form</field>
+  </record>
+
+  <record id="action_ost_solution" model="ir.actions.act_window">
+    <field name="name">Rješenja</field>
+    <field name="res_model">ost.solution</field>
+    <field name="view_mode">kanban,list,form</field>
+  </record>
+
+  <record id="action_ost_experiment" model="ir.actions.act_window">
+    <field name="name">Eksperimenti</field>
+    <field name="res_model">ost.experiment</field>
+    <field name="view_mode">kanban,list,form</field>
+  </record>
+
+  <!-- AKCIJE ZA STAT DUGMAD (koriste active_id unutar akcije) -->
+  <record id="action_ost_opportunity_from_outcome" model="ir.actions.act_window">
+    <field name="name">Prilike</field>
+    <field name="res_model">ost.opportunity</field>
+    <field name="view_mode">kanban,list,form</field>
+    <field name="domain">[('outcome_id', '=', context.get('active_id'))]</field>
+    <field name="context">{'default_outcome_id': context.get('active_id')}</field>
+  </record>
+
+  <record id="action_ost_solution_from_opportunity" model="ir.actions.act_window">
+    <field name="name">Rješenja</field>
+    <field name="res_model">ost.solution</field>
+    <field name="view_mode">kanban,list,form</field>
+    <field name="domain">[('opportunity_id', '=', context.get('active_id'))]</field>
+    <field name="context">{'default_opportunity_id': context.get('active_id')}</field>
+  </record>
+
+  <record id="action_ost_experiment_from_solution" model="ir.actions.act_window">
+    <field name="name">Eksperimenti</field>
+    <field name="res_model">ost.experiment</field>
+    <field name="view_mode">kanban,list,form</field>
+    <field name="domain">[('solution_id', '=', context.get('active_id'))]</field>
+    <field name="context">{'default_solution_id': context.get('active_id')}</field>
+  </record>
+
+  <!-- OUTCOME: FORM / LIST / KANBAN -->
+  <record id="view_ost_outcome_form" model="ir.ui.view">
+    <field name="name">ost.outcome.form</field>
+    <field name="model">ost.outcome</field>
+    <field name="arch" type="xml">
+      <form string="Outcome">
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <!-- NEMA context na dugmetu -->
+            <button type="action" class="oe_stat_button"
+                    name="%(universal_request_manager.action_ost_opportunity_from_outcome)d">
+              <div class="o_stat_info">
+                <span class="o_stat_value"><field name="opportunity_count"/></span>
+                <span class="o_stat_text">Prilike</span>
+              </div>
+            </button>
+          </div>
+
+          <group>
+            <group>
+              <field name="name"/>
+              <field name="description"/>
+            </group>
+            <group>
+              <field name="kpi_name"/>
+              <field name="target_value"/>
+              <field name="deadline"/>
+              <field name="priority"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_ost_outcome_list" model="ir.ui.view">
+    <field name="name">ost.outcome.list</field>
+    <field name="model">ost.outcome</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="kpi_name"/>
+        <field name="target_value"/>
+        <field name="deadline"/>
+        <field name="priority"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_ost_outcome_kanban" model="ir.ui.view">
+    <field name="name">ost.outcome.kanban</field>
+    <field name="model">ost.outcome</field>
+    <field name="arch" type="xml">
+      <kanban default_group_by="priority" class="o_kanban_small_column">
+        <field name="name"/>
+        <field name="kpi_name"/>
+        <field name="target_value"/>
+        <field name="deadline"/>
+        <field name="priority"/>
+        <templates>
+          <t t-name="card">
+            <div t-attf-class="oe_kanban_global_click">
+              <div class="o_kanban_record_top">
+                <strong t-esc="record.name.value"/>
+              </div>
+              <div class="o_kanban_record_body">
+                <div t-if="record.kpi_name.value">KPI: <t t-esc="record.kpi_name.value"/></div>
+                <div t-if="record.target_value.value">Target: <t t-esc="record.target_value.value"/></div>
+                <div t-if="record.deadline.value">Rok: <t t-esc="record.deadline.value"/></div>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <!-- OPPORTUNITY -->
+  <record id="view_ost_opportunity_form" model="ir.ui.view">
+    <field name="name">ost.opportunity.form</field>
+    <field name="model">ost.opportunity</field>
+    <field name="arch" type="xml">
+      <form string="Opportunity">
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button type="action" class="oe_stat_button"
+                    name="%(universal_request_manager.action_ost_solution_from_opportunity)d">
+              <div class="o_stat_info">
+                <span class="o_stat_value"><field name="solution_count"/></span>
+                <span class="o_stat_text">Rješenja</span>
+              </div>
+            </button>
+          </div>
+          <group>
+            <group>
+              <field name="name"/>
+              <field name="description"/>
+            </group>
+            <group>
+              <field name="source"/>
+              <field name="outcome_id"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_ost_opportunity_list" model="ir.ui.view">
+    <field name="name">ost.opportunity.list</field>
+    <field name="model">ost.opportunity</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="outcome_id"/>
+        <field name="source"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_ost_opportunity_kanban" model="ir.ui.view">
+    <field name="name">ost.opportunity.kanban</field>
+    <field name="model">ost.opportunity</field>
+    <field name="arch" type="xml">
+      <kanban class="o_kanban_small_column">
+        <field name="name"/>
+        <field name="outcome_id"/>
+        <field name="source"/>
+        <templates>
+          <t t-name="card">
+            <div class="oe_kanban_global_click ">
+              <strong t-esc="record.name.value"/>
+              <div class="o_text_muted">Outcome: <t t-esc="record.outcome_id.value"/></div>
+              <div class="o_text_muted">Izvor: <t t-esc="record.source.value"/></div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <!-- SOLUTION -->
+  <record id="view_ost_solution_form" model="ir.ui.view">
+    <field name="name">ost.solution.form</field>
+    <field name="model">ost.solution</field>
+    <field name="arch" type="xml">
+      <form string="Solution">
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button type="action" class="oe_stat_button"
+                    name="%(universal_request_manager.action_ost_experiment_from_solution)d">
+              <div class="o_stat_info">
+                <span class="o_stat_value"><field name="experiment_count"/></span>
+                <span class="o_stat_text">Eksperimenti</span>
+              </div>
+            </button>
+          </div>
+          <group>
+            <group>
+              <field name="name"/>
+              <field name="description"/>
+            </group>
+            <group>
+              <field name="type"/>
+              <field name="status"/>
+              <field name="opportunity_id"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_ost_solution_list" model="ir.ui.view">
+    <field name="name">ost.solution.list</field>
+    <field name="model">ost.solution</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="opportunity_id"/>
+        <field name="type"/>
+        <field name="status"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_ost_solution_kanban" model="ir.ui.view">
+    <field name="name">ost.solution.kanban</field>
+    <field name="model">ost.solution</field>
+    <field name="arch" type="xml">
+      <kanban class="o_kanban_small_column" default_group_by="status">
+        <field name="name"/>
+        <field name="type"/>
+        <field name="opportunity_id"/>
+        <templates>
+          <t t-name="card">
+            <div class="oe_kanban_global_click ">
+              <strong t-esc="record.name.value"/>
+              <div class="o_text_muted">Tip: <t t-esc="record.type.value"/></div>
+              <div class="o_text_muted">Opportunity: <t t-esc="record.opportunity_id.value"/></div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <!-- EXPERIMENT -->
+  <record id="view_ost_experiment_form" model="ir.ui.view">
+    <field name="name">ost.experiment.form</field>
+    <field name="model">ost.experiment</field>
+    <field name="arch" type="xml">
+      <form string="Experiment">
+        <sheet>
+          <group>
+            <group>
+              <field name="name"/>
+              <field name="method"/>
+            </group>
+            <group>
+              <field name="status"/>
+              <field name="success"/>
+              <field name="solution_id"/>
+            </group>
+          </group>
+          <notebook>
+            <page string="Rezultati">
+              <field name="result_notes" colspan="4"/>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_ost_experiment_list" model="ir.ui.view">
+    <field name="name">ost.experiment.list</field>
+    <field name="model">ost.experiment</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="solution_id"/>
+        <field name="status"/>
+        <field name="success"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_ost_experiment_kanban" model="ir.ui.view">
+    <field name="name">ost.experiment.kanban</field>
+    <field name="model">ost.experiment</field>
+    <field name="arch" type="xml">
+      <kanban class="o_kanban_small_column" default_group_by="status">
+        <field name="name"/>
+        <field name="success"/>
+        <field name="solution_id"/>
+        <templates>
+          <t t-name="card">
+            <div class="oe_kanban_global_click ">
+              <strong t-esc="record.name.value"/>
+              <div class="o_text_muted">Uspjeh: <t t-esc="record.success.value ? 'Da' : 'Ne'"/></div>
+              <div class="o_text_muted">Solution: <t t-esc="record.solution_id.value"/></div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+
+
+  <!-- DASHBOARD ACTION -->
+
+  <record id="action_ost_dashboard" model="ir.actions.client">
+      <field name="name">OST Dashboard</field>
+      <field name="tag">ost_dashboard_client</field>
+  </record>
+
+
+</odoo>

@@ -61,3 +61,15 @@ access_template_plan_line_user,access.template.plan.line.user,model_template_pla
 
 access_digimen_linkbox_user,digimen.linkbox.user,model_digimen_linkbox,base.group_user,1,1,1,1
 access_digimen_linkbox_category_user,digimen.linkbox.category.user,model_digimen_linkbox_category,base.group_user,1,1,1,1
+
+
+access_ost_outcome,access_ost_outcome,model_ost_outcome,base.group_user,1,1,1,1
+access_ost_opportunity,access_ost_opportunity,model_ost_opportunity,base.group_user,1,1,1,1
+access_ost_solution,access_ost_solution,model_ost_solution,base.group_user,1,1,1,1
+access_ost_experiment,access_ost_experiment,model_ost_experiment,base.group_user,1,1,1,1
+
+
+access_bmc_canvas_user,bmc.canvas user,model_bmc_canvas,base.group_user,1,1,1,1
+access_bmc_item_user,bmc.item user,model_bmc_item,base.group_user,1,1,1,1
+access_lc_canvas_user,lc.canvas user,model_lc_canvas,base.group_user,1,1,1,1
+access_lc_item_user,lc.item user,model_lc_item,base.group_user,1,1,1,1
