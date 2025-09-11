@@ -1,4 +1,11 @@
 <odoo>
+
+    <!-- AKCIJA ZA OTVARANJE IZVJESTAJA -->
+    <record id="action_lc_report_client" model="ir.actions.client">
+        <field name="name">LC Izvještaj</field>
+        <field name="tag">lc_report</field>
+    </record>
+
 <!-- VIEWS AND ACTION FOR LC CANVAS -->
     <record id="view_lc_canvas_form" model="ir.ui.view">
         <field name="name">lc.canvas.form</field>
@@ -35,6 +42,7 @@
     <record id="view_lc_canvas_kanban" model="ir.ui.view">
         <field name="name">lc.canvas.kanban</field>
         <field name="model">lc.canvas</field>
+        <field name="priority" eval="100"/>
         <field name="arch" type="xml">
             <kanban>
                 <field name="name"/>
@@ -44,18 +52,32 @@
                 <field name="assigned_user_id"/>
                 <templates>
                     <t t-name="card">
-                        <a type="object" name="action_open_items" style="text-decoration: none; color: inherit;">
-                            <strong><field name="name"/></strong>
-                            <div><strong>Datum:</strong> <field name="date"/></div>
-                            <div><strong>Planer:</strong> <field name="planner_id"/></div>
-                            <div><strong>Tip:</strong> <field name="type"/></div>
-                            <div><strong>Dodijeljeni:</strong> <field name="assigned_user_id"/></div>
-                        </a>
+                        <div class="d-flex flex-column justify-between">
+                            <!-- Klik na cijelu karticu vodi na action_open_items -->
+                            <a type="object" name="action_open_items"
+                            class="oe_kanban_global_click flex-grow-1"
+                            style="text-decoration: none; color: inherit;">
+                                <strong><field name="name"/></strong>
+                                <div><strong>Datum:</strong> <field name="date"/></div>
+                                <div><strong>Planer:</strong> <field name="planner_id"/></div>
+                                <div><strong>Tip:</strong> <field name="type"/></div>
+                                <div><strong>Dodijeljeni:</strong> <field name="assigned_user_id"/></div>
+                            </a>
+                            <!-- Dugme za izvještaj -->
+                            <div class="d-flex justify-content-end mt-2">
+                                <button type="action"
+                                        name="%(action_lc_report_client)d"
+                                        string="Izvještaj"
+                                        class="btn btn-primary btn-sm"/>
+                            </div>
+                        </div>
                     </t>
                 </templates>
             </kanban>
         </field>
     </record>
+
+
 
     <record id="action_lc_canvas" model="ir.actions.act_window">
         <field name="name">LC Platna</field>
@@ -119,8 +141,6 @@
                         <div class="oe_kanban_global_click">
                             <strong><field name="name"/></strong>
                             <div><field name="description"/></div>
-                            <div><strong>Cilj:</strong> <field name="goal"/></div>
-                            <div><strong>Rezultat:</strong> <field name="result"/></div>
                         </div>
                     </t>
                 </templates>

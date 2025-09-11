@@ -142,6 +142,13 @@
         <field name="search_view_id" ref="view_universal_request_search"/>
     </record>
 
+    <record id="action_open_calendar" model="ir.actions.act_window">
+        <field name="name">Calendar</field>
+        <field name="res_model">calendar.event</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="target">current</field>
+    </record>
+
     <record id="action_open_montexel_roi" model="ir.actions.act_url">
         <field name="name">ROI</field>
         <field name="url">https://www.montexel.com/roi</field>

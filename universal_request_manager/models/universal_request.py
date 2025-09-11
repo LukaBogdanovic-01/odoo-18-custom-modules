@@ -1,5 +1,6 @@
 from jsonschema import ValidationError
-from odoo import models, fields, api
+from odoo import models, fields, api, SUPERUSER_ID
+
 
 class UniversalRequest(models.Model):
     _name = 'universal.request'
@@ -377,7 +378,7 @@ class GapAnalysisItem(models.Model):
     type = fields.Selection([
         ('current', 'Trenutno stanje'),
         ('target', 'Ciljano stanje'),
-        ('gap', 'GAP'),
+        ('gap', 'Ograničenje (Problem)'),
         ('solution', 'Rješenje'),
         ('benefit', 'Benefit'),
         ('budget', 'Budžet')

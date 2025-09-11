@@ -1,0 +1,120 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="universal_request_manager.bmc_report_template">
+        <div class="o_bmc_report p-4">
+            <h2 class="text-center mb-4">📊 BMC Izvještaj</h2>
+
+            <t t-if="state.canvas">
+                <table class="table table-bordered table-hover align-middle mx-auto" style="table-layout: fixed; width: 90%; text-align: center;">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 10%;">Pozicija</th>
+                            <th style="width: 10%;">Naziv</th>
+                            <th style="width: 20%;">Ciljevi (KPI)</th>
+                            <th style="width: 20%;">Rezultat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="[
+    {code: 'value', label: 'Value Propositions'},
+    {code: 'segments', label: 'Customer Segments'},
+    {code: 'channels', label: 'Channels'},
+    {code: 'relationships', label: 'Customer Relationships'},
+    {code: 'revenue', label: 'Revenue Streams'},
+    {code: 'resources', label: 'Key Resources'},
+    {code: 'activities', label: 'Key Activities'},
+    {code: 'partnerships', label: 'Key Partnerships'},
+    {code: 'cost', label: 'Cost Structure'},
+    {code: 'internal', label: 'Interni procesi'}
+]" t-as="block" t-key="block.code">
+    <tr>
+        <td class="fw-bold"><t t-esc="block.label"/></td>
+
+        <td>
+            <t t-foreach="state.canvas.item_ids.filter(i => i.block === block.code)"
+               t-as="item" t-key="item.id">
+                <div class="mb-1"><t t-esc="item.name"/></div>
+            </t>
+        </td>
+
+        <td>
+            <t t-foreach="state.canvas.item_ids.filter(i => i.block === block.code)"
+               t-as="item" t-key="item.id">
+                <div class="mb-1" t-raw="item.goal"/>
+            </t>
+        </td>
+
+        <td>
+            <t t-foreach="state.canvas.item_ids.filter(i => i.block === block.code)"
+               t-as="item" t-key="item.id">
+                <div class="mb-1" t-raw="item.result"/>
+            </t>
+        </td>
+    </tr>
+</t>
+
+                    </tbody>
+                </table>
+            </t>
+        </div>
+    </t>
+
+
+    <t t-name="universal_request_manager.lc_report_template">
+        <div class="o_lc_report p-4">
+            <h2 class="text-center mb-4">📘 LC Izvještaj</h2>
+
+            <t t-if="state.canvas">
+                <table class="table table-bordered table-hover align-middle mx-auto"
+                       style="table-layout: fixed; width: 90%; text-align: center;">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 10%;">Pozicija</th>
+                            <th style="width: 10%;">Naziv</th>
+                            <th style="width: 20%;">Ciljevi</th>
+                            <th style="width: 20%;">Rezultat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="[
+                            {code: 'problem', label: 'Problem'},
+                            {code: 'segments', label: 'Customer Segments'},
+                            {code: 'value', label: 'Unique Value Proposition'},
+                            {code: 'solution', label: 'Solution'},
+                            {code: 'channels', label: 'Channels'},
+                            {code: 'revenue', label: 'Revenue Streams'},
+                            {code: 'cost', label: 'Cost Structure'},
+                            {code: 'metrics', label: 'Key Metrics'},
+                            {code: 'advantage', label: 'Unfair Advantage'}
+                        ]" t-as="block" t-key="block.code">
+                            <tr>
+                                <td class="fw-bold"><t t-esc="block.label"/></td>
+
+                                <td>
+                                    <t t-foreach="state.canvas.item_ids.filter(i => i.block === block.code)"
+                                       t-as="item" t-key="item.id">
+                                        <div class="mb-1"><t t-esc="item.name"/></div>
+                                    </t>
+                                </td>
+
+                                <td>
+                                    <t t-foreach="state.canvas.item_ids.filter(i => i.block === block.code)"
+                                       t-as="item" t-key="item.id">
+                                        <div class="mb-1" t-raw="item.goal"/>
+                                    </t>
+                                </td>
+
+                                <td>
+                                    <t t-foreach="state.canvas.item_ids.filter(i => i.block === block.code)"
+                                       t-as="item" t-key="item.id">
+                                        <div class="mb-1" t-raw="item.result"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+        </div>
+    </t>
+</templates>
+

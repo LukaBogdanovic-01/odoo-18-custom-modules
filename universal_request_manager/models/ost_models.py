@@ -1,5 +1,19 @@
 from odoo import api, fields, models
 
+
+AVAILABLE_COLORS = [
+    "#FF0000",  # crvena
+    "#008000",  # zelena
+    "#0000FF",  # plava
+    "#FFA500",  # narandžasta
+    "#800080",  # ljubičasta
+    "#00CED1",  # tirkizna
+    "#FFD700",  # žuta
+    "#A52A2A",  # braon
+]
+
+
+
 class OstOutcome(models.Model):
     _name = "ost.outcome"
     _description = "OST Outcome (Cilj)"
@@ -47,10 +61,22 @@ class OstOpportunity(models.Model):
     solution_ids = fields.One2many("ost.solution", "opportunity_id", string="Rješenja")
     solution_count = fields.Integer(compute="_compute_counts")
 
+    color = fields.Char(string="Color", readonly=True)
+
     @api.depends("solution_ids")
     def _compute_counts(self):
         for rec in self:
             rec.solution_count = len(rec.solution_ids)
+
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("color"):
+                count = self.search_count([])
+                vals["color"] = AVAILABLE_COLORS[count % len(AVAILABLE_COLORS)]
+        return super().create(vals_list)
+
 
 
 class OstSolution(models.Model):
@@ -80,6 +106,14 @@ class OstSolution(models.Model):
 
     experiment_ids = fields.One2many("ost.experiment", "solution_id", string="Eksperimenti")
     experiment_count = fields.Integer(compute="_compute_counts")
+
+    color = fields.Char(string="Color", compute="_compute_color", store=True)
+
+
+    @api.depends("opportunity_id.color")
+    def _compute_color(self):
+        for rec in self:
+            rec.color = rec.opportunity_id.color or "#CCCCCC"
 
     @api.depends("experiment_ids")
     def _compute_counts(self):
@@ -113,6 +147,13 @@ class OstExperiment(models.Model):
     success = fields.Boolean(string="Uspješno?")
 
     solution_id = fields.Many2one("ost.solution", required=True, ondelete="cascade")
+
+    color = fields.Char(string="Color", compute="_compute_color", store=True)
+
+    @api.depends("solution_id.color")
+    def _compute_color(self):
+        for rec in self:
+            rec.color = rec.solution_id.color or "#CCCCCC"
 
 
 # class OstDashboard(models.Model):

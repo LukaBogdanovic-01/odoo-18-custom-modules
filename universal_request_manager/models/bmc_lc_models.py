@@ -29,6 +29,13 @@ class BMCCanvas(models.Model):
             'name': f'Stavke - {self.name}'
         }
 
+    def action_print_report(self):
+        self.ensure_one()
+        return self.env.ref("universal_request_manager.action_report_bmc_canvas").report_action(self)
+
+
+
+
 
 
 class BMCItem(models.Model):
@@ -36,7 +43,7 @@ class BMCItem(models.Model):
     _description = 'BMC Stavka'
 
     name = fields.Char(string='Naziv', required=True)
-    description = fields.Text(string='Opis')
+    description = fields.Html(string='Opis')
     task = fields.Many2one('project.task', string='Zadaci')
     goal = fields.Html(string='Cilj')
     result = fields.Html(string='Rezultat')
@@ -61,6 +68,7 @@ class BMCItem(models.Model):
     @api.model
     def _group_expand_block(self, values, domain, order=None):
         return ['value','segments','channels','relationships','revenue','resources','activities','partnerships','cost','internal']
+
 
 
 
@@ -100,7 +108,7 @@ class LCItem(models.Model):
     _description = 'LC Stavka'
 
     name = fields.Char(string='Naziv', required=True)
-    description = fields.Text(string='Opis')
+    description = fields.Html(string='Opis')
     task = fields.Many2one('project.task', string='Zadaci')
     goal = fields.Html(string='Cilj')
     result = fields.Html(string='Rezultat')

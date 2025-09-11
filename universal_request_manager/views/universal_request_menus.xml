@@ -3,8 +3,8 @@
     <menuitem id="menu_universal_request_root" name="DIGIMEN" sequence="10"/>
 
     <!-- Glavne sekcije -->
-    <menuitem id="menu_universal_request" name="Aktivnosti" parent="menu_universal_request_root" action="action_universal_request" sequence="10"/>
-    <menuitem id="menu_universal_request_calendar" name="Kalendar" parent="menu_universal_request_root" action="action_universal_request_calendar" sequence="20"/>
+    <menuitem id="menu_universal_request_activities" name="Aktivnosti" parent="menu_universal_request_root" action="action_universal_request" sequence="10"/>
+    <menuitem id="menu_universal_request_calendar" name="Kalendar" parent="menu_universal_request_root" action="action_open_calendar" sequence="20"/>
     <menuitem id="menu_universal_request_sales_root" name="Prodaja" parent="menu_universal_request_root" sequence="30"/>
     <menuitem id="menu_universal_request_spec_app" name="Spec. App" parent="menu_universal_request_root" sequence="40"/>
     <menuitem id="menu_universal_request_goals_tools" name="Biznis alati" parent="menu_universal_request_root" sequence="50"/>
@@ -12,6 +12,9 @@
     <menuitem id="menu_universal_request_library" name="Setup" parent="menu_universal_request_root" sequence="70"/>
     <menuitem id="menu_universal_request_help" name="Pomoć" parent="menu_universal_request_root" sequence="80"/>
 
+    <!-- Unutar aktivnosti -->
+    <menuitem id="menu_universal_request" name="Aktivnosti" parent="menu_universal_request_activities" action="action_universal_request" sequence="10"/>
+    <menuitem id="menu_activity_calendar" name="Kalendar" parent="menu_universal_request_activities" action="action_universal_request_calendar" sequence="20"/>
 
     <!-- SPEC.APP -->
     <menuitem id="menu_universal_request_projects" name="Projekti" parent="menu_universal_request_spec_app" action="project.open_view_project_all" sequence="1"/>
@@ -66,7 +69,7 @@
 
     <!-- Podmeni za OST -->
     <menuitem id="menu_ost_dashboard" name="Dashboard" parent="menu_universal_request_goals_tools_ost" action="universal_request_manager.action_ost_dashboard" sequence="1"/>
-    <menuitem id="menu_ost_outcome" name="Outcomes" parent="menu_universal_request_goals_tools_ost" action="action_ost_outcome" sequence="10"/>
+    <menuitem id="menu_ost_outcome" name="Outcomes" parent="menu_universal_request_goals_tools_ost" action="action_ost_outcome_board" sequence="10"/>
     <menuitem id="menu_ost_opportunity" name="Opportunities" parent="menu_universal_request_goals_tools_ost" action="action_ost_opportunity" sequence="20"/>
     <menuitem id="menu_ost_solution" name="Solutions" parent="menu_universal_request_goals_tools_ost" action="action_ost_solution" sequence="30"/>
     <menuitem id="menu_ost_experiment" name="Experiments" parent="menu_universal_request_goals_tools_ost" action="action_ost_experiment" sequence="40"/>

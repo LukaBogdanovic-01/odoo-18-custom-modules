@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<template id="ost_workflow_board_template" name="OST Workflow Board">
+  <t t-name="universal_request_manager.ost_workflow_board_template" owl="1">
+    <div class="container mt-4">
+      <div class="text-center mb-4">
+        <h3 class="fw-bold" style="color: #6f42c1;">OST Workflow Board</h3>
+        <p style="color: #666;">Pregled cijelog workflowa za odabrani cilj</p>
+      </div>
+
+      <div class="row">
+        <!-- Kolona: Cilj -->
+        <div class="col-md-3">
+          <h5 class="fw-bold text-center">Cilj</h5>
+          <div class="card p-2 mb-2 shadow-sm o_board_card ost-workflow-card"
+               t-att-data-id="state.goal and state.goal.id"
+               data-model="ost.outcome"
+               t-on-click="onCardClick">
+            <strong><t t-esc="state.goal and state.goal.name"/></strong>
+            <p class="small"><t t-esc="state.goal and state.goal.description"/></p>
+          </div>
+        </div>
+
+        <!-- Kolona: Prilike -->
+        <div class="col-md-3">
+          <h5 class="fw-bold text-center">Prilike</h5>
+          <t t-foreach="state.opportunities" t-as="opp" t-key="opp.id">
+            <div class="card p-2 mb-2 shadow-sm o_board_card ost-workflow-card"
+                 t-att-data-id="opp.id"
+                 data-model="ost.opportunity"
+                 t-on-click="onCardClick">
+              <div class="d-flex align-items-center">
+                <div t-attf-style="width:12px;height:12px;background-color:#{opp.color};margin-right:6px;"></div>
+                <strong><t t-esc="opp.name"/></strong>
+              </div>
+              <p class="small"><t t-esc="opp.description"/></p>
+            </div>
+          </t>
+        </div>
+
+        <!-- Kolona: Rješenja -->
+        <div class="col-md-3">
+          <h5 class="fw-bold text-center">Rješenja</h5>
+          <t t-foreach="state.solutions" t-as="sol" t-key="sol.id">
+            <div class="card p-2 mb-2 shadow-sm o_board_card ost-workflow-card"
+                 t-att-data-id="sol.id"
+                 data-model="ost.solution"
+                 t-on-click="onCardClick">
+              <div class="d-flex align-items-center">
+                <div t-attf-style="width:12px;height:12px;background-color:#{sol.color};margin-right:6px;"></div>
+                <strong><t t-esc="sol.name"/></strong>
+              </div>
+              <p class="small">Prilika: <t t-esc="sol.opportunity_id[1]"/></p>
+              <p class="small"><t t-esc="sol.description"/></p>
+            </div>
+          </t>
+        </div>
+
+        <!-- Kolona: Eksperimenti -->
+        <div class="col-md-3">
+          <h5 class="fw-bold text-center">Eksperimenti</h5>
+          <t t-foreach="state.experiments" t-as="exp" t-key="exp.id">
+            <div class="card p-2 mb-2 shadow-sm o_board_card ost-workflow-card"
+                 t-att-data-id="exp.id"
+                 data-model="ost.experiment"
+                 t-on-click="onCardClick">
+              <div class="d-flex align-items-center">
+                <div t-attf-style="width:12px;height:12px;background-color:#{exp.color};margin-right:6px;"></div>
+                <strong><t t-esc="exp.name"/></strong>
+              </div>
+              <p class="small">Rješenje: <t t-esc="exp.solution_id[1]"/></p>
+              <p class="small">Status: <t t-esc="exp.status"/></p>
+            </div>
+          </t>
+        </div>
+      </div>
+    </div>
+  </t>
+</template>
