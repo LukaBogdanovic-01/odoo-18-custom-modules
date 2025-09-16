@@ -488,7 +488,7 @@ class DigimenLinkbox(models.Model):
     related_model_id = fields.Selection([
         ('task', 'Zadatak'),
         ('partner', 'Partner'),
-    ], string="Poveži sa", required=True)
+    ], string="Poveži sa")
     related_task_id = fields.Many2one('project.task', string="Zadatak", domain="[('project_id', '=', project_id)]")
     related_partner_id = fields.Many2one('res.partner', string="Partner")
     category_id = fields.Many2one('digimen.linkbox.category', string="Kategorija", group_expand='_expand_category')

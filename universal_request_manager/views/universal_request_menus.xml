@@ -65,6 +65,12 @@
     <menuitem id="menu_universal_request_goals_tools_bmc" name="BMC" parent="menu_universal_request_goals_tools" action="action_bmc_canvas" sequence="30"/>
     <menuitem id="menu_universal_request_goals_tools_lc" name="LC" parent="menu_universal_request_goals_tools" action="action_lc_canvas" sequence="35"/>
     <menuitem id="menu_digimen_linkbox" name="Linkbox" parent="menu_universal_request_goals_tools" sequence="40"/>
+    <menuitem id="menu_ppp_root" name="PPP" parent="menu_universal_request_goals_tools" sequence="45"/>
+
+
+    <!-- Za PPP -->
+    <menuitem id="menu_ppp_analysis" name="PPP Analysis" parent="menu_ppp_root" action="action_ppp_analysis"/>
+    <menuitem id="menu_ppp_archive" name="PPP Archive" parent="menu_ppp_root" action="action_ppp_archive"/>
 
 
     <!-- Podmeni za OST -->

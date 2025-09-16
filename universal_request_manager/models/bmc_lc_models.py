@@ -16,6 +16,8 @@ class BMCCanvas(models.Model):
     assigned_user_id = fields.Many2one('res.users', string='Dodijeljeni korisnik')
     item_ids = fields.One2many('bmc.item', 'canvas_id', string='Stavke')
 
+    link_url = fields.Char(string="Link")
+
     def action_open_items(self):
         self.ensure_one()
         return {
@@ -44,6 +46,7 @@ class BMCItem(models.Model):
 
     name = fields.Char(string='Naziv', required=True)
     description = fields.Html(string='Opis')
+    integrations = fields.Html(string='Integracije')
     task = fields.Many2one('project.task', string='Zadaci')
     goal = fields.Html(string='Cilj')
     result = fields.Html(string='Rezultat')
@@ -89,6 +92,8 @@ class LCCanvas(models.Model):
     assigned_user_id = fields.Many2one('res.users', string='Dodijeljeni korisnik')
 
     item_ids = fields.One2many('lc.item', 'canvas_id', string='Stavke')
+    link_url = fields.Char(string="Link")
+
 
     def action_open_items(self):
         self.ensure_one()
@@ -109,6 +114,7 @@ class LCItem(models.Model):
 
     name = fields.Char(string='Naziv', required=True)
     description = fields.Html(string='Opis')
+    integrations = fields.Html(string='Integracije')
     task = fields.Many2one('project.task', string='Zadaci')
     goal = fields.Html(string='Cilj')
     result = fields.Html(string='Rezultat')

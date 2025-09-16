@@ -23,17 +23,21 @@
         'views/portal_card_view.xml',
         'views/bmc_views_and_actions.xml',
         'views/lc_views_and_actions.xml',
+        'views/ppp_views_and_actions.xml',
         'views/universal_request_menus.xml',
+        'data/ppp_cron.xml',
         
     ],
     'assets': {
         'web.assets_backend': [
             'universal_request_manager/static/src/js/ost_dashboard.js',
             'universal_request_manager/static/src/js/bmc_lc_report.js',
+            'universal_request_manager/static/src/js/gap_report.js',
             'universal_request_manager/static/src/css/universal_request.css',
             'universal_request_manager/static/src/xml/ost_dashboard_template.xml',
             'universal_request_manager/static/src/xml/ost_workflow_board.xml',
             'universal_request_manager/static/src/xml/bmc_lc_report_templates.xml',
+            'universal_request_manager/static/src/xml/gap_report_template.xml',
         ],
         'web.assets_common': [
             'universal_request_manager/static/src/css/universal_request.css',

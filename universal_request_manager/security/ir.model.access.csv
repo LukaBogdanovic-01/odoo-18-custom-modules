@@ -73,3 +73,7 @@ access_bmc_canvas_user,bmc.canvas user,model_bmc_canvas,base.group_user,1,1,1,1
 access_bmc_item_user,bmc.item user,model_bmc_item,base.group_user,1,1,1,1
 access_lc_canvas_user,lc.canvas user,model_lc_canvas,base.group_user,1,1,1,1
 access_lc_item_user,lc.item user,model_lc_item,base.group_user,1,1,1,1
+
+
+access_ppp_analysis_user,access.ppp.analysis.user,model_ppp_analysis,base.group_user,1,1,1,1
+access_ppp_archive_user,access.ppp.archive.user,model_ppp_archive,base.group_user,1,1,1,1

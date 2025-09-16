@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<template id="gap_workflow_board_template" name="GAP Workflow Board">
+  <t t-name="universal_request_manager.gap_analysis_report_template" owl="1">
+    <div class="container mt-4">
+      <div class="text-center mb-4">
+        <h3 class="fw-bold" style="color: #6f42c1;">GAP Workflow Board</h3>
+        <p style="color: #666;">Pregled cijele GAP analize po tipovima</p>
+      </div>
+
+      <div class="row">
+        <!-- Kolona: Trenutno stanje -->
+        <div class="col-md-2">
+  <h5 class="fw-bold text-center">Trenutno stanje</h5>
+  <t t-foreach="state.analysis.item_ids" t-as="item" t-key="item.id">
+    <t t-if="item.type == 'current'">
+      <div class="card p-2 mb-2 shadow-sm o_board_card gap-workflow-card">
+        <strong><t t-esc="item.name"/></strong>
+        <p class="small" t-out="item.description"/>
+      </div>
+    </t>
+  </t>
+</div>
+
+
+        <!-- Kolona: Ciljano stanje -->
+        <div class="col-md-2">
+          <h5 class="fw-bold text-center">Ciljano stanje</h5>
+          <t t-foreach="state.analysis.item_ids" t-as="item" t-key="item.id">
+            <t t-if="item.type === 'target'">
+              <div class="card p-2 mb-2 shadow-sm o_board_card gap-workflow-card">
+                <strong><t t-esc="item.name"/></strong>
+                <p class="small" t-out="item.description"/>
+              </div>
+            </t>
+          </t>
+        </div>
+
+        <!-- Kolona: Ograničenje -->
+        <div class="col-md-2">
+          <h5 class="fw-bold text-center">Ograničenje (Problem)</h5>
+          <t t-foreach="state.analysis.item_ids" t-as="item" t-key="item.id">
+            <t t-if="item.type === 'gap'">
+              <div class="card p-2 mb-2 shadow-sm o_board_card gap-workflow-card">
+                <strong><t t-esc="item.name"/></strong>
+                <p class="small" t-out="item.description"/>
+              </div>
+            </t>
+          </t>
+        </div>
+
+        <!-- Kolona: Rješenje -->
+        <div class="col-md-2">
+          <h5 class="fw-bold text-center">Rješenja</h5>
+          <t t-foreach="state.analysis.item_ids" t-as="item" t-key="item.id">
+            <t t-if="item.type === 'solution'">
+              <div class="card p-2 mb-2 shadow-sm o_board_card gap-workflow-card">
+                <strong><t t-esc="item.name"/></strong>
+                <p class="small" t-out="item.description"/>
+              </div>
+            </t>
+          </t>
+        </div>
+
+        <!-- Kolona: Benefit -->
+        <div class="col-md-2">
+          <h5 class="fw-bold text-center">Benefit</h5>
+          <t t-foreach="state.analysis.item_ids" t-as="item" t-key="item.id">
+            <t t-if="item.type === 'benefit'">
+              <div class="card p-2 mb-2 shadow-sm o_board_card gap-workflow-card">
+                <strong><t t-esc="item.name"/></strong>
+                <p class="small" t-out="item.description"/>
+              </div>
+            </t>
+          </t>
+        </div>
+
+        <!-- Kolona: Budžet -->
+        <div class="col-md-2">
+          <h5 class="fw-bold text-center">Budžet</h5>
+          <t t-foreach="state.analysis.item_ids" t-as="item" t-key="item.id">
+            <t t-if="item.type === 'budget'">
+              <div class="card p-2 mb-2 shadow-sm o_board_card gap-workflow-card">
+                <strong><t t-esc="item.name"/></strong>
+                <p class="small" t-out="item.description"/>
+              </div>
+            </t>
+          </t>
+        </div>
+      </div>
+    </div>
+  </t>
+</template>

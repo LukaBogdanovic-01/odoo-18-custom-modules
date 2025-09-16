@@ -1,4 +1,9 @@
 <odoo>
+    <!-- AKCIJA ZA OTVARANJE IZVJESTAJA -->
+    <record id="action_gap_analysis_report_client" model="ir.actions.client">
+        <field name="name">Gap Analysis Pregled</field>
+        <field name="tag">gap_analysis_report_client</field>
+    </record>
 
     <!-- AKCIJA ZA GAP STAVKE -->
     <record id="action_gap_analysis_items_filtered" model="ir.actions.act_window">
@@ -19,21 +24,31 @@
                 <field name="project_id"/>
                 <templates>
                     <t t-name="card">
-                        <div class="oe_kanban_card">
+                        <div class="d-flex flex-column justify-between">
+                            <!-- Klik na cijelu karticu otvara stavke -->
                             <a type="action"
-                                name="%(action_gap_analysis_items_filtered)d"
+                            name="%(action_gap_analysis_items_filtered)d"
                             context="{'default_gap_analysis_id': id}"
                             domain="[('gap_analysis_id', '=', id)]"
-                            class="d-block">
+                            class="oe_kanban_global_click flex-grow-1"
+                            style="text-decoration: none; color: inherit;">
                                 <strong><field name="name"/></strong>
-                                <div>Projekat: <field name="project_id"/></div>
+                                <div><strong>Projekat:</strong> <field name="project_id"/></div>
                             </a>
+                            <!-- Dugme za QWeb template -->
+                            <div class="d-flex justify-content-end mt-2">
+                                <button type="action"
+                                        name="%(action_gap_analysis_report_client)d"
+                                        string="Pregled"
+                                        class="btn btn-primary btn-sm"/>
+                            </div>
                         </div>
                     </t>
                 </templates>
             </kanban>
         </field>
     </record>
+
 
     <record id="view_gap_analysis_list" model="ir.ui.view">
         <field name="name">gap.analysis.list</field>
