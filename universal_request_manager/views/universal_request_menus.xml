@@ -69,8 +69,8 @@
 
 
     <!-- Za PPP -->
-    <menuitem id="menu_ppp_analysis" name="PPP Analysis" parent="menu_ppp_root" action="action_ppp_analysis"/>
-    <menuitem id="menu_ppp_archive" name="PPP Archive" parent="menu_ppp_root" action="action_ppp_archive"/>
+    <menuitem id="menu_ppp_analysis" name="Planerska tabla" parent="menu_ppp_root" action="action_ppp_analysis"/>
+    <menuitem id="menu_ppp_archive" name="Arhiva" parent="menu_ppp_root" action="action_ppp_archive"/>
 
 
     <!-- Podmeni za OST -->
