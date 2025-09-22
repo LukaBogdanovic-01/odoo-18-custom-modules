@@ -56,10 +56,6 @@ class UniversalRequest(models.Model):
     )
 
 
-    
-
-
-
 
     @api.depends('request_type_id')
     def _compute_show_custom_fields(self):

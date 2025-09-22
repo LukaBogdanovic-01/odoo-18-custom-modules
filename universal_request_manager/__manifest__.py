@@ -25,7 +25,6 @@
         'views/lc_views_and_actions.xml',
         'views/ppp_views_and_actions.xml',
         'views/universal_request_menus.xml',
-        'data/ppp_cron.xml',
         
     ],
     'assets': {

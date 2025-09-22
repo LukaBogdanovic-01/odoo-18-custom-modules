@@ -14,5 +14,16 @@
             <field name="name">Član tima</field>
             <field name="category_id" ref="base.module_category_hidden"/>
         </record>
+
+        <!-- Grupa za ppp analizu -->
+        <!-- <record id="group_ppp_user" model="res.groups">
+            <field name="name">PPP User</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+        <record id="base.group_user" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('universal_request_manager.group_ppp_user'))]"/>
+        </record> -->
+
+
     </data>
 </odoo>

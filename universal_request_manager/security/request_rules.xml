@@ -8,7 +8,8 @@
             <field name="groups" eval="[(4, ref('base.group_user'))]"/>
         </record>
 
-         <record id="rule_ppp_analysis_user_visibility" model="ir.rule">
+    <!-- Za  internal usere za ppp analizu -->
+        <record id="rule_ppp_analysis_user_visibility" model="ir.rule">
             <field name="name">User Limited Access to PPP Analysis</field>
             <field name="model_id" ref="model_ppp_analysis"/>
             <field name="domain_force">
@@ -16,6 +17,23 @@
             </field>
             <field name="groups" eval="[(4, ref('base.group_user'))]"/>
         </record>
+
+
+    <!--  Za admine za ppp analizu i arhivu-->
+        <record id="rule_ppp_analysis_admin_visibility" model="ir.rule">
+            <field name="name">Admin Full Access to PPP Analysis</field>
+            <field name="model_id" ref="model_ppp_analysis"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+        </record>
+
+        <record id="rule_ppp_archive_admin_visibility" model="ir.rule">
+            <field name="name">Admin Full Access to PPP Archive</field>
+            <field name="model_id" ref="model_ppp_archive"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+        </record>
+
         
     </data>
 </odoo>

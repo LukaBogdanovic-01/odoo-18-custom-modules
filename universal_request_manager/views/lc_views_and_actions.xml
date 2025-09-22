@@ -114,10 +114,10 @@
                             <field name="description"/>
                         </page>
                         <page string="Integracije">
-                            <field name="integrations"/>
+                            <field name="integrations" placeholder="Type '/ ' for commands"/>
                         </page>
                         <page string="Zadaci">
-                            <field name="task"/>
+                            <field name="task" placeholder="Select a task"/>
                         </page>
                         <page string="Cilj / Rješenje">
                             <group>

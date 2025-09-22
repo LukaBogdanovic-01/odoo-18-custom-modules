@@ -110,7 +110,7 @@
                     <t t-name="card">
                         <div t-att-class="'oe_kanban_card oe_kanban_global_click priority_' + record.priority.raw_value">
                             <div class="d-flex justify-content-between align-items-center">
-                                <strong><field name="name"/></strong>
+                                <field name="name"/>
                                 <field name="state" widget="state_selection" options="{'clickable': True}" class="o_kanban_status_circle"/>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
 
     <record id="action_open_montexel_roi" model="ir.actions.act_url">
         <field name="name">ROI</field>
-        <field name="url">https://www.montexel.com/roi</field>
+        <field name="url">https://www.montexel.com/en/ekonomska-analiza-softverskih-investicija</field>
         <field name="target">new</field>
     </record>
 
