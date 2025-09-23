@@ -19,29 +19,6 @@
     background-color: #dc3545; /* crveno */
 }
 
-.o_kanban_status_circle .o_status {
-    border-radius: 50%;
-    height: 12px;
-    width: 12px;
-    margin-left: 8px;
-    background-color: #ccc; /* default */
-}
-
-.o_kanban_status_circle .o_status.draft {
-    background-color: gray !important;
-}
-.o_kanban_status_circle .o_status.in_progress {
-    background-color: orange !important;
-}
-.o_kanban_status_circle .o_status.done {
-    background-color: green !important;
-}
-.o_kanban_status_circle .o_status.rejected,
-.o_kanban_status_circle .o_status.cancel {
-    background-color: red !important;
-}
-
-
 .o_kanban_group .o_kanban_counter {
     display: none !important;
 }

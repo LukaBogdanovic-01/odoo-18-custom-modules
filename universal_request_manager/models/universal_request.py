@@ -134,14 +134,42 @@ class UniversalRequest(models.Model):
 
 
     status = fields.Selection(
-        selection=_get_all_statuses,
+        selection=lambda self: self._get_all_statuses(),
         string="Status",
         default='inbox',
         tracking=True,
         readonly=False,
         index=True,
-        group_expand='_expand_status'  # koristi i dalje ovo
+        group_expand='_expand_status'
     )
+
+    kanban_state = fields.Selection([
+        ('normal', 'Normal'),
+        ('blocked', 'Blocked'),
+        ('done', 'Done'),
+    ], string="Kanban State", compute="_compute_kanban_state",
+    inverse="_inverse_kanban_state", store=False)
+
+    @api.depends('state')
+    def _compute_kanban_state(self):
+        mapping = {
+            'draft': 'normal',
+            'cancel': 'blocked',
+            'done': 'done',
+        }
+        for rec in self:
+            rec.kanban_state = mapping.get(rec.state, 'normal')
+
+    def _inverse_kanban_state(self):
+        reverse_mapping = {
+            'normal': 'draft',
+            'blocked': 'cancel',
+            'done': 'done',
+        }
+        for rec in self:
+            if rec.kanban_state:
+                rec.state = reverse_mapping.get(rec.kanban_state, rec.state)
+
 
 
 
