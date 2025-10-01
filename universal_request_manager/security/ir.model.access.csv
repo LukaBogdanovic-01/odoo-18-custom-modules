@@ -77,3 +77,7 @@ access_lc_item_user,lc.item user,model_lc_item,base.group_user,1,1,1,1
 
 access_ppp_analysis_user,access.ppp.analysis.user,model_ppp_analysis,base.group_user,1,1,1,1
 access_ppp_archive_user,access.ppp.archive.user,model_ppp_archive,base.group_user,1,1,1,1
+
+access_scenario_user,access.scenario.user,model_scenario_scenario,base.group_user,1,1,1,1
+
+access_biz_strategija_user,biz.strategija.user,model_biz_strategija,base.group_user,1,1,1,1

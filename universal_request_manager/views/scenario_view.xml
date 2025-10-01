@@ -1,0 +1,104 @@
+<odoo>
+    <record id="view_scenario_form" model="ir.ui.view">
+        <field name="name">scenario.form</field>
+        <field name="model">scenario.scenario</field>
+        <field name="arch" type="xml">
+            <form string="Scenario">
+            <style>
+                .o_form_sheet table td,
+                .o_form_sheet table th {
+                    border: 1px solid #999 !important;
+                    padding: 6px;
+                    vertical-align: top;     /* tekst ide odozgo */
+                    word-wrap: break-word;   /* da lomi riječ umjesto širenja */
+                    white-space: normal;     /* dozvoljava višelinijski tekst */
+                }
+                /* samo prva kolona */
+                .o_form_sheet table td:first-child,
+                .o_form_sheet table th:first-child {
+                    text-align: left;
+                    vertical-align: middle;
+                    font-weight: bold; 
+                }
+            </style>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <div style="margin-top:60px;"></div>
+                    <group>
+                       <table class="table table-bordered" style="width:100%; text-align:center; table-layout: fixed;">
+                            <!-- Prvi red = opis kolona -->
+                            <tr>
+                                <th style="width:10%"></th>   <!-- Opisi: uža kolona -->
+                                <th style="width:30%">Scenario 1</th>
+                                <th style="width:30%">Scenario 2</th>
+                                <th style="width:30%">Scenario 3</th>
+                            </tr>
+
+                            <!-- Red 1 -->
+                            <tr>
+                                <th>1. Vizija</th>
+                                <td><field name="cell_1_1"/></td>
+                                <td><field name="cell_1_2"/></td>
+                                <td><field name="cell_1_3"/></td>
+                            </tr>
+
+                            <!-- Red 2 -->
+                            <tr>
+                                <th>2. Klijenti</th>
+                                <td><field name="cell_2_1"/></td>
+                                <td><field name="cell_2_2"/></td>
+                                <td><field name="cell_2_3"/></td>
+                            </tr>
+
+                            <!-- Red 3 -->
+                            <tr>
+                                <th>3. Proizvod</th>
+                                <td><field name="cell_3_1"/></td>
+                                <td><field name="cell_3_2"/></td>
+                                <td><field name="cell_3_3"/></td>
+                            </tr>
+
+                            <!-- Red 4 -->
+                            <tr>
+                                <th>4. Biz.model</th>
+                                <td><field name="cell_4_1"/></td>
+                                <td><field name="cell_4_2"/></td>
+                                <td><field name="cell_4_3"/></td>
+                            </tr>
+
+                            <!-- Red 5 -->
+                            <tr>
+                                <th>5. Rizik</th>
+                                <td><field name="cell_5_1"/></td>
+                                <td><field name="cell_5_2"/></td>
+                                <td><field name="cell_5_3"/></td>
+                            </tr>
+
+                            <!-- Red 6 -->
+                            <tr>
+                                <th>6. KPI</th>
+                                <td><field name="cell_6_1"/></td>
+                                <td><field name="cell_6_2"/></td>
+                                <td><field name="cell_6_3"/></td>
+                            </tr>
+                        </table>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_scenario" model="ir.actions.act_window">
+        <field name="name">Scenariji</field>
+        <field name="res_model">scenario.scenario</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Kreiraj novi scenario.
+            </p>
+        </field>
+    </record>
+
+</odoo>

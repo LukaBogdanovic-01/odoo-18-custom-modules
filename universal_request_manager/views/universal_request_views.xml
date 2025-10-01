@@ -9,18 +9,22 @@
                     <div style="text-align: right; margin-bottom: 10px;">
                         <field name="status" widget="statusbar" options="{'clickable': True}"/>
                     </div>
-
+                    <div class="oe_button_box" name="button_box">
+                        <div style="float: right; margin-bottom: 0;">
+                            <button name="action_create_ppp_analysis"
+                                    type="object"
+                                    string="Kreiraj PPP Analizu"
+                                    class="btn btn-primary oe_highlight"/>
+                        </div>
+                    </div>
                    <header>
-    <button name="action_convert_to_task"
-            type="object"
-            string="Odobri"
-            class="btn btn-primary"
-            groups="universal_request_manager.group_manager,universal_request_manager.group_director,base.group_system"
-            invisible="not show_approve_button"/>
-</header>
-
-
-
+                        <button name="action_convert_to_task"
+                                type="object"
+                                string="Odobri"
+                                class="btn btn-primary"
+                                groups="universal_request_manager.group_manager,universal_request_manager.group_director,base.group_system"
+                                invisible="not show_approve_button"/>
+                    </header>
                     <group>
                         <group>
                             <!-- Prva kolona -->

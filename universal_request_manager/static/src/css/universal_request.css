@@ -74,6 +74,89 @@
 }
 
 
+/* Za dashboard strategije */
+.o_strategija_dashboard {
+    padding: 10px;
+    background: #f5f7fb;
+    min-height: 100vh;               /* zauzima cijeli ekran */
+    display: flex;                   /* centriranje vertikalno/horizontalno */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -50px;               /* ukloni gornji margin */
+}
+
+/* Naslov da bude centriran */
+.o_strategija_dashboard h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #222;
+    text-align: center;
+}
+
+/* Ikonice u gridu */
+.o_strategija_icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 kolone */
+    gap: 40px;
+    justify-content: center;                /* centriraj grid */
+}
+
+/* Kartice */
+.o_icon_box {
+    width: 180px;         /* povećano */
+    height: 160px;        /* povećano */
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.o_icon_box:hover {
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+
+/* Ikonice */
+.o_icon_box i {
+    font-size: 50px;   /* veće ikone */
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.o_icon_box:hover i {
+    transform: scale(1.2);
+}
+
+/* Tekst ispod ikona */
+.o_icon_box p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+
+/* Različite boje po alatu */
+.o_icon_box.swot i { color:#0d6efd; }
+.o_icon_box.scenario i { color:#198754; }
+.o_icon_box.gap i { color:#fd7e14; }
+.o_icon_box.bmc i { color:#6f42c1; }
+.o_icon_box.ost i { color:#20c997; }
+.o_icon_box.lc i { color:#e83e8c; }
+.o_icon_box.ppp i { color:#ffc107; }
+
+
+
 
 
 

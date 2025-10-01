@@ -37,6 +37,13 @@ class OstOutcome(models.Model):
     opportunity_ids = fields.One2many("ost.opportunity", "outcome_id", string="Prilike")
     opportunity_count = fields.Integer(compute="_compute_counts")
 
+    strategija_id = fields.Many2one(
+        "biz.strategija",
+        string="Strategija",
+        index=True
+        # bez required=True
+    )
+
     @api.depends("opportunity_ids")
     def _compute_counts(self):
         for rec in self:

@@ -12,8 +12,17 @@
         <field name="model">lc.canvas</field>
         <field name="arch" type="xml">
             <form string="LC Platno">
+                <header>
+                    <button name="%(action_lc_canvas)d"
+                            string="Sva LC platna"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-th-large"
+                            invisible="from_dashboard == False"/>
+                </header>
                 <sheet>
                     <group>
+                        <field name="from_dashboard" invisible="1"/>
                         <field name="name"/>
                         <field name="date"/>
                         <field name="planner_id"/>
@@ -68,13 +77,12 @@
 
                         <!-- Link ka fajlu ako postoji -->
                         <div t-if="record.link_url.value" class="mt-1">
-    <a t-att-href="record.link_url.value"
-       target="_blank"
-       style="text-decoration: none; color: #007bff;">
-        🔗 <t t-esc="record.link_url.value"/>
-    </a>
-</div>
-
+                            <a t-att-href="record.link_url.value"
+                            target="_blank"
+                            style="text-decoration: none; color: #007bff;">
+                                🔗 <t t-esc="record.link_url.value"/>
+                            </a>
+                        </div>
                         <!-- Dugme za izvještaj -->
                         <div class="d-flex justify-content-end mt-2">
                             <button type="action"

@@ -1,6 +1,10 @@
 <odoo>
     <!-- Glavni korijen -->
-    <menuitem id="menu_universal_request_root" name="DIGIMEN" sequence="10"/>
+    <record id="menu_universal_request_root" model="ir.ui.menu">
+        <field name="name">Digimen</field>
+        <field name="sequence">10</field>
+        <field name="web_icon">universal_request_manager,static/description/icon.png</field>
+    </record>
 
     <!-- Glavne sekcije -->
     <menuitem id="menu_universal_request_activities" name="Aktivnosti" parent="menu_universal_request_root" action="action_universal_request" sequence="10"/>
@@ -9,7 +13,7 @@
     <menuitem id="menu_universal_request_sales_root" name="Prodaja" parent="menu_universal_request_root" sequence="30"/>
     <menuitem id="menu_universal_request_spec_app" name="Spec. App" parent="menu_universal_request_root" sequence="40"/>
     <menuitem id="menu_universal_request_goals_tools" name="Biznis alati" parent="menu_universal_request_root" sequence="50"/>
-    <menuitem id="menu_digimen_linkbox_root" name="Linkbox" parent="menu_universal_request_root" sequence="60"/>
+    <menuitem id="menu_digimen_linkbox_root" name="Linkbox" parent="menu_universal_request_root" action="action_digimen_linkbox" sequence="60"/>
     <menuitem id="menu_universal_request_dashboard" name="Tabla" parent="menu_universal_request_root" action="action_open_custom_dashboard" sequence="70"/>
     <menuitem id="menu_universal_request_help" name="Pomoć" parent="menu_universal_request_root" sequence="80"/>
 
@@ -69,6 +73,8 @@
     <menuitem id="menu_universal_request_goals_tools_lc" name="LC" parent="menu_universal_request_goals_tools" action="action_lc_canvas" sequence="35"/>
     <menuitem id="menu_digimen_linkbox" name="Linkbox" parent="menu_universal_request_goals_tools" sequence="40"/>
     <menuitem id="menu_ppp_root" name="PPP" parent="menu_universal_request_goals_tools" sequence="45"/>
+    <menuitem id="menu_scenario_root" name="Scenario" parent="menu_universal_request_goals_tools" action="action_scenario" sequence="50"/>
+    <menuitem id="menu_strategija" name="Strategije" parent="menu_universal_request_goals_tools" action="action_strategija"/>
 
 
     <!-- Za PPP -->
@@ -87,6 +93,5 @@
     <!-- Podmeni za Linkove -->
     <menuitem id="menu_digimen_linkbox_links" name="Linkovi" parent="menu_digimen_linkbox" sequence="10" action="action_digimen_linkbox"/>
     <menuitem id="menu_digimen_linkbox_categories" name="Kategorije" parent="menu_digimen_linkbox" sequence="20" action="action_linkbox_category"/>
-    <menuitem id="menu_digimen_linkbox_links_root" name="Linkovi" parent="menu_digimen_linkbox_root" sequence="10" action="action_digimen_linkbox"/>
-    <menuitem id="menu_digimen_linkbox_categories_root" name="Kategorije" parent="menu_digimen_linkbox_root" sequence="20" action="action_linkbox_category"/>
+    
 </odoo>

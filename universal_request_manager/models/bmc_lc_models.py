@@ -17,6 +17,22 @@ class BMCCanvas(models.Model):
     item_ids = fields.One2many('bmc.item', 'canvas_id', string='Stavke')
 
     link_url = fields.Char(string="Link")
+    strategija_id = fields.Many2one(
+        "biz.strategija",
+        string="Strategija",
+        index=True
+        # bez required=True
+    )
+    from_dashboard = fields.Boolean(
+        compute="_compute_from_dashboard",
+        store=False
+    )
+
+    @api.depends_context("from_dashboard")
+    def _compute_from_dashboard(self):
+        for rec in self:
+            rec.from_dashboard = bool(self.env.context.get("from_dashboard"))
+
 
     def action_open_items(self):
         self.ensure_one()
@@ -93,6 +109,22 @@ class LCCanvas(models.Model):
 
     item_ids = fields.One2many('lc.item', 'canvas_id', string='Stavke')
     link_url = fields.Char(string="Link")
+    strategija_id = fields.Many2one(
+        "biz.strategija",
+        string="Strategija",
+        index=True
+        # bez required=True
+    )
+    from_dashboard = fields.Boolean(
+        compute="_compute_from_dashboard",
+        store=False
+    )
+
+    @api.depends_context("from_dashboard")
+    def _compute_from_dashboard(self):
+        for rec in self:
+            rec.from_dashboard = bool(self.env.context.get("from_dashboard"))
+
 
 
     def action_open_items(self):

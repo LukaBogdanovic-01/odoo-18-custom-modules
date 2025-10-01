@@ -3,7 +3,7 @@
     'version': '18.0.1.0.0',
     'summary': 'Digitalni menadžer',
     'license': 'LGPL-3',
-    'depends': ['project', 'base', 'mail', 'hr', 'auth_signup', 'web', 'crm', 'sale', 'survey', 'portal', 'website', 'me_sh_document_counter', 'sh_document_management'],
+    'depends': ['portal', 'website','project', 'base', 'mail', 'hr', 'auth_signup', 'web', 'crm', 'sale', 'survey', 'me_sh_document_counter', 'sh_document_management'],
     'data': [
         'security/security.xml',
         'security/demo_users.xml',
@@ -24,6 +24,8 @@
         'views/bmc_views_and_actions.xml',
         'views/lc_views_and_actions.xml',
         'views/ppp_views_and_actions.xml',
+        'views/scenario_view.xml',
+        'views/strategy_views.xml',
         'views/universal_request_menus.xml',
         
     ],
@@ -32,18 +34,21 @@
             'universal_request_manager/static/src/js/ost_dashboard.js',
             'universal_request_manager/static/src/js/bmc_lc_report.js',
             'universal_request_manager/static/src/js/gap_report.js',
+            'universal_request_manager/static/src/js/strategija_dashboard.js',
             'universal_request_manager/static/src/css/universal_request.css',
             'universal_request_manager/static/src/xml/ost_dashboard_template.xml',
             'universal_request_manager/static/src/xml/ost_workflow_board.xml',
             'universal_request_manager/static/src/xml/bmc_lc_report_templates.xml',
             'universal_request_manager/static/src/xml/gap_report_template.xml',
+            'universal_request_manager/static/src/xml/strategy_template.xml',
         ],
         'web.assets_common': [
             'universal_request_manager/static/src/css/universal_request.css',
         ],
         'web.assets_qweb': [
             'universal_request_manager/static/src/xml/ost_dashboard_template.xml',
-            'universal_request_manager/static/src/xml/ost_workflow_board.xml',  
+            'universal_request_manager/static/src/xml/ost_workflow_board.xml', 
+             
         ],
     },
     'installable': True,

@@ -32,12 +32,19 @@ class PPPAnalysis(models.Model):
             ("progres", "Progres"),
             ("problem", "Problem"),
             ("plan", "Plan"),
-            ("future", "U budućnosti"),
+            ("future", "Mjesec +"),
         ],
         string="Status",
         default="progres",
         required=True,
         group_expand="_group_expand_stage",
+    )
+
+    strategija_id = fields.Many2one(
+        "biz.strategija",
+        string="Strategija",
+        index=True
+        # bez required=True
     )
 
     @api.depends("description", "name")

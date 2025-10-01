@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="strategija_dashboard_template" xml:space="preserve">
+    <t t-name="universal_request_manager.strategija_dashboard_template">
+        <div class="o_strategija_dashboard">
+            <h2><t t-esc="state.strategijaName"/></h2>
+
+            <!-- NEMA inline style-a ovdje -->
+            <div class="o_strategija_icons">
+
+                <div class="o_icon_box swot" t-on-click="openModel" data-model="swot.analysis">
+                    <i class="fa fa-pie-chart"></i>
+                    <p>SWOT</p>
+                </div>
+
+                <div class="o_icon_box scenario" t-on-click="openModel" data-model="scenario.scenario">
+                    <i class="fa fa-sitemap"></i>
+                    <p>Scenario</p>
+                </div>
+
+                <div class="o_icon_box gap" t-on-click="openModel" data-model="gap.analysis">
+                    <i class="fa fa-arrows-h"></i>
+                    <p>GAP</p>
+                </div>
+
+                <div class="o_icon_box bmc" t-on-click="openModel" data-model="bmc.canvas">
+                    <i class="fa fa-th-large"></i>
+                    <p>BMC</p>
+                </div>
+
+                <div class="o_icon_box ost" t-on-click="openModel" data-model="ost.outcome">
+                    <i class="fa fa-recycle"></i>
+                    <p>OST</p>
+                </div>
+
+                <div class="o_icon_box lc" t-on-click="openModel" data-model="lc.canvas">
+                    <i class="fa fa-th"></i>
+                    <p>LC</p>
+                </div>
+
+                <div class="o_icon_box ppp" t-on-click="openModel" data-model="ppp.analysis">
+                    <i class="fa fa-lightbulb-o"></i>
+                    <p>PPP</p>
+                </div>
+
+            </div>
+        </div>
+    </t>
+</templates>

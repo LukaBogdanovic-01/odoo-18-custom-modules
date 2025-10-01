@@ -54,6 +54,18 @@ class UniversalRequest(models.Model):
         'document.directory',
         string="Dokumenti"
     )
+    partner_ids = fields.Many2many(
+        'res.partner',
+        string="Partners",
+        compute="_compute_partner_ids",
+        store=False
+    )
+
+    @api.depends('assigned_user_id')
+    def _compute_partner_ids(self):
+        for rec in self:
+            rec.partner_ids = rec.assigned_user_id.mapped('partner_id')
+
 
 
 
@@ -222,6 +234,31 @@ class UniversalRequest(models.Model):
                 )
         return records
 
+    def action_create_ppp_analysis(self):
+        self.ensure_one()
+
+        # mapiranje polja između modela
+        vals = {
+            "description": self.description,
+            "project_id": self.project_id.id,
+            # u ppp.analysis je polje tag_ids vezano za model "project.tags",
+            # a u universal.request je za "project.tag".
+            # Ako koristiš isti model tagova, ovo ide direktno:
+            "tag_ids": [(6, 0, self.tag_ids.ids)],
+            # assigned_user_id (M2M) → assigned_user_ids (M2M)
+            "assigned_user_ids": [(6, 0, self.assigned_user_id.ids)],
+        }
+
+        new_ppp = self.env["ppp.analysis"].create(vals)
+
+        # odmah otvori form view za taj novi rekord
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "ppp.analysis",
+            "view_mode": "form",
+            "res_id": new_ppp.id,
+            "target": "current",
+        }
 
 
 
@@ -295,6 +332,23 @@ class SwotAnalysis(models.Model):
     name = fields.Char(string="Naziv", required=True)
     project_id = fields.Many2one('project.project', string="Projekat", required=True)
     item_ids = fields.One2many('swot.item', 'swot_analysis_id', string="Stavke SWOT-a")
+
+    strategija_id = fields.Many2one(
+        "biz.strategija",
+        string="Strategija",
+        index=True
+        # bez required=True
+    )
+    from_dashboard = fields.Boolean(
+        compute="_compute_from_dashboard",
+        store=False
+    )
+
+    @api.depends_context("from_dashboard")
+    def _compute_from_dashboard(self):
+        for rec in self:
+            rec.from_dashboard = bool(self.env.context.get("from_dashboard"))
+
 
 
 
@@ -385,9 +439,23 @@ class GapAnalysis(models.Model):
     name = fields.Char(string="Naziv GAP Analize", required=True)
     project_id = fields.Many2one('project.project', string="Projekat", required=True)
 
-
-
     item_ids = fields.One2many('gap.analysis.item', 'gap_analysis_id', string="Oblasti GAP Analize")
+
+    strategija_id = fields.Many2one(
+        "biz.strategija",
+        string="Strategija",
+        index=True
+        # bez required=True
+    )
+    from_dashboard = fields.Boolean(
+        compute="_compute_from_dashboard",
+        store=False
+    )
+
+    @api.depends_context("from_dashboard")
+    def _compute_from_dashboard(self):
+        for rec in self:
+            rec.from_dashboard = bool(self.env.context.get("from_dashboard"))
 
 
 class GapAnalysisItem(models.Model):

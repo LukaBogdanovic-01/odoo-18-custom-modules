@@ -61,6 +61,45 @@
         </field>
     </record>
 
+    <!-- FORM PRIKAZ ZA GAP ANALIZU -->
+    <record id="view_gap_analysis_form" model="ir.ui.view">
+        <field name="name">gap.analysis.form</field>
+        <field name="model">gap.analysis</field>
+        <field name="arch" type="xml">
+            <form string="GAP Analiza">
+                <header>
+                    <button name="%(action_gap_analysis)d"
+                            string="Sve GAP analize"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-th-large"
+                            invisible="from_dashboard == False"/>
+                </header>
+                <sheet>
+                    <!-- Gornji red: Naziv i Projekat -->
+                    <group>
+                        <field name="from_dashboard" invisible="1"/>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="project_id"/>
+                        </group>
+                    </group>
+
+                    <!-- Tabela sa oblastima GAP analize -->
+                    <group>
+                        <field name="item_ids">
+                            <list editable="bottom">
+                                <field name="name"/>
+                                <!-- ovdje možeš dodati još polja iz swot.item -->
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
     <!-- AKCIJA ZA GAP ANALIZU -->
     <record id="action_gap_analysis" model="ir.actions.act_window">

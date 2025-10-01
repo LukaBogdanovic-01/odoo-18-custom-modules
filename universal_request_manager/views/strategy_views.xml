@@ -1,0 +1,70 @@
+<odoo>
+    <!-- Form view -->
+    <record id="view_strategija_form" model="ir.ui.view">
+        <field name="name">biz.strategija.form</field>
+        <field name="model">biz.strategija</field>
+        <field name="arch" type="xml">
+            <form string="Strategija">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List (tree) view -->
+    <record id="view_strategija_tree" model="ir.ui.view">
+        <field name="name">biz.strategija.list</field>
+        <field name="model">biz.strategija</field>
+        <field name="arch" type="xml">
+            <list string="Strategije">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban view -->
+    <record id="view_strategija_kanban" model="ir.ui.view">
+        <field name="name">biz.strategija.kanban</field>
+        <field name="model">biz.strategija</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <!-- cijela kartica je link -->
+                        <a type="action" 
+                        name="universal_request_manager.action_strategija_dashboard" 
+                        context="{'active_id': id}"
+                        class="oe_kanban_global_click">
+                            
+                            <!-- dodaš id da bi bio dostupan -->
+                            <field name="id" invisible="1"/>
+                            
+                            <div>
+                                <strong><field name="name"/></strong>
+                            </div>
+                        </a>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- Client Action: JS komponenta -->
+    <record id="action_strategija_dashboard" model="ir.actions.client">
+        <field name="name">Strategija Dashboard</field>
+        <field name="tag">strategija_dashboard</field>
+    </record>
+
+    <!-- Action za prikaz strategija (list/kanban) -->
+    <record id="action_strategija" model="ir.actions.act_window">
+        <field name="name">Strategije</field>
+        <field name="res_model">biz.strategija</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="target">current</field>
+    </record>
+
+</odoo>
