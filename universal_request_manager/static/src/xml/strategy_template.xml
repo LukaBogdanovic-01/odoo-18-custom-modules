@@ -27,14 +27,14 @@
                     <p>BMC</p>
                 </div>
 
-                <div class="o_icon_box ost" t-on-click="openModel" data-model="ost.outcome">
-                    <i class="fa fa-recycle"></i>
-                    <p>OST</p>
-                </div>
-
                 <div class="o_icon_box lc" t-on-click="openModel" data-model="lc.canvas">
                     <i class="fa fa-th"></i>
                     <p>LC</p>
+                </div>
+
+                <div class="o_icon_box ost" t-on-click="openModel" data-model="ost.outcome">
+                    <i class="fa fa-recycle"></i>
+                    <p>OST</p>
                 </div>
 
                 <div class="o_icon_box ppp" t-on-click="openModel" data-model="ppp.analysis">

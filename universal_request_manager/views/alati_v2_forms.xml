@@ -1,0 +1,452 @@
+<odoo>  
+    <!-- FORM I AKCIJA ZA SWOT 2 -->
+    <record id="view_swot_form" model="ir.ui.view">
+        <field name="name">swot.form</field>
+        <field name="model">swot.analysis2</field>
+        <field name="arch" type="xml">
+            <form string="SWOT Analiza">
+                <style>
+                    .o_form_sheet table td,
+                    .o_form_sheet table th {
+                        border: 1px solid #999 !important;
+                        padding: 6px;
+                        text-align: left;         /* tekst uvijek lijevo */
+                        vertical-align: middle;   /* vertikalno centriran */
+                        word-wrap: break-word;
+                        white-space: normal;
+                    }
+                    /* prvi red (zaglavlja) */
+                    .o_form_sheet table tr:first-child th {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                    /* prva kolona */
+                    .o_form_sheet table td:first-child,
+                    .o_form_sheet table th:first-child {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                </style>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="project_id"/>
+                    </group>
+
+                    <div style="margin-top:40px;"></div>
+                    <group>
+                        <table class="table table-bordered" style="width:100%; text-align:left; table-layout: fixed;">
+                            <!-- Zaglavlje kolona -->
+                            <tr>
+                                <th style="width:20%">SWOT</th>
+                                <th style="width:20%">Q1</th>
+                                <th style="width:20%">Q2</th>
+                                <th style="width:20%">Q3</th>
+                                <th style="width:20%">Q4</th>
+                            </tr>
+
+                            <!-- Red 1: Snaga -->
+                            <tr>
+                                <th>Snaga</th>
+                                <td><field name="cell_1_1"/></td>
+                                <td><field name="cell_1_2"/></td>
+                                <td><field name="cell_1_3"/></td>
+                                <td><field name="cell_1_4"/></td>
+                            </tr>
+
+                            <!-- Red 2: Slabost -->
+                            <tr>
+                                <th>Slabost</th>
+                                <td><field name="cell_2_1"/></td>
+                                <td><field name="cell_2_2"/></td>
+                                <td><field name="cell_2_3"/></td>
+                                <td><field name="cell_2_4"/></td>
+                            </tr>
+
+                            <!-- Red 3: Prilika -->
+                            <tr>
+                                <th>Prilika</th>
+                                <td><field name="cell_3_1"/></td>
+                                <td><field name="cell_3_2"/></td>
+                                <td><field name="cell_3_3"/></td>
+                                <td><field name="cell_3_4"/></td>
+                            </tr>
+
+                            <!-- Red 4: Prijetnja -->
+                            <tr>
+                                <th>Prijetnja</th>
+                                <td><field name="cell_4_1"/></td>
+                                <td><field name="cell_4_2"/></td>
+                                <td><field name="cell_4_3"/></td>
+                                <td><field name="cell_4_4"/></td>
+                            </tr>
+                        </table>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_swot" model="ir.actions.act_window">
+        <field name="name">SWOT Analize</field>
+        <field name="res_model">swot.analysis2</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- FORM I ACTION ZA GAP 2 -->
+    <record id="view_gap2_form" model="ir.ui.view">
+        <field name="name">gap2.form</field>
+        <field name="model">gap.analysis2</field>
+        <field name="arch" type="xml">
+            <form string="GAP Analiza 2">
+                <style>
+                    .o_form_sheet table td,
+                    .o_form_sheet table th {
+                        border: 1px solid #999 !important;
+                        padding: 6px;
+                        text-align: left;
+                        vertical-align: middle;
+                        word-wrap: break-word;
+                        white-space: normal;
+                    }
+                    /* prvi red */
+                    .o_form_sheet table tr:first-child th {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                    /* prva kolona */
+                    .o_form_sheet table td:first-child,
+                    .o_form_sheet table th:first-child {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                </style>
+
+                <sheet>
+                    <group>
+                        <field name="name" save_on_change="1"/>
+                        <field name="project_id"/>
+                    </group>
+
+                    <div style="margin-top:40px;"></div>
+
+                    <group>
+                        <table class="table table-bordered" style="width:100%; table-layout: fixed;">
+                            <!-- zaglavlje kolona -->
+                            <tr>
+                                <th style="width:15%">GAP</th>
+                                <th>Trenutno stanje</th>
+                                <th>Ciljano stanje</th>
+                                <th>Ograničenja (Problemi)</th>
+                                <th>Rješenje</th>
+                                <th>Benefit</th>
+                                <th>Budžet</th>
+                            </tr>
+
+                            <!-- red 1 -->
+                            <tr>
+                                <th><field name="row_label_1"/></th>
+                                <td><field name="cell_1_1"/></td>
+                                <td><field name="cell_1_2"/></td>
+                                <td><field name="cell_1_3"/></td>
+                                <td><field name="cell_1_4"/></td>
+                                <td><field name="cell_1_5"/></td>
+                                <td><field name="cell_1_6"/></td>
+                            </tr>
+
+                            <!-- red 2 -->
+                            <tr>
+                                <th><field name="row_label_2"/></th>
+                                <td><field name="cell_2_1"/></td>
+                                <td><field name="cell_2_2"/></td>
+                                <td><field name="cell_2_3"/></td>
+                                <td><field name="cell_2_4"/></td>
+                                <td><field name="cell_2_5"/></td>
+                                <td><field name="cell_2_6"/></td>
+                            </tr>
+
+                            <!-- red 3 -->
+                            <tr>
+                                <th><field name="row_label_3"/></th>
+                                <td><field name="cell_3_1"/></td>
+                                <td><field name="cell_3_2"/></td>
+                                <td><field name="cell_3_3"/></td>
+                                <td><field name="cell_3_4"/></td>
+                                <td><field name="cell_3_5"/></td>
+                                <td><field name="cell_3_6"/></td>
+                            </tr>
+
+                            <!-- red 4 -->
+                            <tr>
+                                <th><field name="row_label_4"/></th>
+                                <td><field name="cell_4_1"/></td>
+                                <td><field name="cell_4_2"/></td>
+                                <td><field name="cell_4_3"/></td>
+                                <td><field name="cell_4_4"/></td>
+                                <td><field name="cell_4_5"/></td>
+                                <td><field name="cell_4_6"/></td>
+                            </tr>
+
+                            <!-- red 5 -->
+                            <tr>
+                                <th><field name="row_label_5"/></th>
+                                <td><field name="cell_5_1"/></td>
+                                <td><field name="cell_5_2"/></td>
+                                <td><field name="cell_5_3"/></td>
+                                <td><field name="cell_5_4"/></td>
+                                <td><field name="cell_5_5"/></td>
+                                <td><field name="cell_5_6"/></td>
+                            </tr>
+                        </table>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gap2" model="ir.actions.act_window">
+        <field name="name">GAP Analize 2</field>
+        <field name="res_model">gap.analysis2</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- BMC FORM I AKCIJA -->
+    <record id="view_bmc2_form" model="ir.ui.view">
+        <field name="name">bmc2.form</field>
+        <field name="model">bmc.analysis2</field>
+        <field name="arch" type="xml">
+            <form string="BMC Analiza 2">
+                <style>
+                    .o_form_sheet table td,
+                    .o_form_sheet table th {
+                        border: 1px solid #999 !important;
+                        padding: 6px;
+                        text-align: left;
+                        vertical-align: middle;
+                        word-wrap: break-word;
+                        white-space: normal;
+                    }
+                    /* prvi red */
+                    .o_form_sheet table tr:first-child th {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                    /* prva kolona */
+                    .o_form_sheet table td:first-child,
+                    .o_form_sheet table th:first-child {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                </style>
+
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="project_id"/>
+                    </group>
+
+                    <div style="margin-top:40px;"></div>
+
+                    <group>
+                        <table class="table table-bordered" style="width:100%; table-layout: fixed;">
+                            <!-- zaglavlje kolona -->
+                            <tr>
+                                <th style="width:10%">BMC</th>
+                                <th>Naziv</th>
+                                <th>Ciljevi (KPI)</th>
+                                <th>Rezultat</th>
+                            </tr>
+
+                            <!-- redovi -->
+                            <tr>
+                                <th>Value Proposition</th>
+                                <td><field name="cell_1_1"/></td>
+                                <td><field name="cell_1_2"/></td>
+                                <td><field name="cell_1_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Customer Segments</th>
+                                <td><field name="cell_2_1"/></td>
+                                <td><field name="cell_2_2"/></td>
+                                <td><field name="cell_2_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Channels</th>
+                                <td><field name="cell_3_1"/></td>
+                                <td><field name="cell_3_2"/></td>
+                                <td><field name="cell_3_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Customer Relationships</th>
+                                <td><field name="cell_4_1"/></td>
+                                <td><field name="cell_4_2"/></td>
+                                <td><field name="cell_4_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Revenue Streams</th>
+                                <td><field name="cell_5_1"/></td>
+                                <td><field name="cell_5_2"/></td>
+                                <td><field name="cell_5_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Key Resources</th>
+                                <td><field name="cell_6_1"/></td>
+                                <td><field name="cell_6_2"/></td>
+                                <td><field name="cell_6_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Key Activities</th>
+                                <td><field name="cell_7_1"/></td>
+                                <td><field name="cell_7_2"/></td>
+                                <td><field name="cell_7_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Key Partnerships</th>
+                                <td><field name="cell_8_1"/></td>
+                                <td><field name="cell_8_2"/></td>
+                                <td><field name="cell_8_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Cost Structure</th>
+                                <td><field name="cell_9_1"/></td>
+                                <td><field name="cell_9_2"/></td>
+                                <td><field name="cell_9_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Interni procesi</th>
+                                <td><field name="cell_10_1"/></td>
+                                <td><field name="cell_10_2"/></td>
+                                <td><field name="cell_10_3"/></td>
+                            </tr>
+                        </table>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_bmc2" model="ir.actions.act_window">
+        <field name="name">BMC Analize 2</field>
+        <field name="res_model">bmc.analysis2</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- LC FORM I AKCIJA -->
+    <record id="view_lc2_form" model="ir.ui.view">
+        <field name="name">lc2.form</field>
+        <field name="model">lc.analysis2</field>
+        <field name="arch" type="xml">
+            <form string="LC Analiza 2">
+                <style>
+                    .o_form_sheet table td,
+                    .o_form_sheet table th {
+                        border: 1px solid #999 !important;
+                        padding: 6px;
+                        text-align: left;
+                        vertical-align: middle;
+                        word-wrap: break-word;
+                        white-space: normal;
+                    }
+                    /* prvi red */
+                    .o_form_sheet table tr:first-child th {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                    /* prva kolona */
+                    .o_form_sheet table td:first-child,
+                    .o_form_sheet table th:first-child {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                </style>
+
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="project_id"/>
+                    </group>
+
+                    <div style="margin-top:40px;"></div>
+
+                    <group>
+                        <table class="table table-bordered" style="width:100%; table-layout: fixed;">
+                            <!-- zaglavlje kolona -->
+                            <tr>
+                                <th style="width:10%">LC</th>
+                                <th>Naziv</th>
+                                <th>Cilj (KPI)</th>
+                                <th>Rezultat</th>
+                            </tr>
+
+                            <!-- redovi -->
+                            <tr>
+                                <th>Problem</th>
+                                <td><field name="cell_1_1"/></td>
+                                <td><field name="cell_1_2"/></td>
+                                <td><field name="cell_1_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Customer Segments</th>
+                                <td><field name="cell_2_1"/></td>
+                                <td><field name="cell_2_2"/></td>
+                                <td><field name="cell_2_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Unique Value Proposition</th>
+                                <td><field name="cell_3_1"/></td>
+                                <td><field name="cell_3_2"/></td>
+                                <td><field name="cell_3_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Solution</th>
+                                <td><field name="cell_4_1"/></td>
+                                <td><field name="cell_4_2"/></td>
+                                <td><field name="cell_4_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Channels</th>
+                                <td><field name="cell_5_1"/></td>
+                                <td><field name="cell_5_2"/></td>
+                                <td><field name="cell_5_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Revenue Streams</th>
+                                <td><field name="cell_6_1"/></td>
+                                <td><field name="cell_6_2"/></td>
+                                <td><field name="cell_6_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Cost Structure</th>
+                                <td><field name="cell_7_1"/></td>
+                                <td><field name="cell_7_2"/></td>
+                                <td><field name="cell_7_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Key Metrics</th>
+                                <td><field name="cell_8_1"/></td>
+                                <td><field name="cell_8_2"/></td>
+                                <td><field name="cell_8_3"/></td>
+                            </tr>
+                            <tr>
+                                <th>Unfair Advantage</th>
+                                <td><field name="cell_9_1"/></td>
+                                <td><field name="cell_9_2"/></td>
+                                <td><field name="cell_9_3"/></td>
+                            </tr>
+                        </table>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_lc2" model="ir.actions.act_window">
+        <field name="name">LC Analize 2</field>
+        <field name="res_model">lc.analysis2</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

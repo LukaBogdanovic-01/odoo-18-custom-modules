@@ -1,0 +1,117 @@
+<odoo>
+    <!-- FORM VIEW -->
+    <record id="view_cjm_form" model="ir.ui.view">
+        <field name="name">cjm.form</field>
+        <field name="model">cjm.analysis</field>
+        <field name="arch" type="xml">
+            <form string="Customer Journey Map">
+                <style>
+                    .o_form_sheet table td,
+                    .o_form_sheet table th {
+                        border: 1px solid #999 !important;
+                        padding: 6px;
+                        text-align: left;
+                        vertical-align: middle;
+                        word-wrap: break-word;
+                        white-space: normal;
+                    }
+                    /* prvi red */
+                    .o_form_sheet table tr:first-child th {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                    /* prva kolona */
+                    .o_form_sheet table td:first-child,
+                    .o_form_sheet table th:first-child {
+                        background-color: #f2f2f2;
+                        font-weight: bold;
+                    }
+                </style>
+
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="project_id"/>
+                    </group>
+
+                    <div style="margin-top:40px;"></div>
+
+                    <group>
+                        <table class="table table-bordered" style="width:100%; table-layout: fixed;">
+                            <!-- zaglavlje kolona -->
+                            <tr>
+                                <th style="width:15%">Customer Journey Map</th>
+                                <th>Proces 1</th>
+                                <th>Proces 2</th>
+                                <th>Proces 3</th>
+                                <th>Proces 4</th>
+                                <th>Proces 5</th>
+                                <th>Proces 6</th>
+                            </tr>
+
+                            <!-- redovi -->
+                            <tr>
+                                <th>Objectives</th>
+                                <td><field name="cell_1_1"/></td>
+                                <td><field name="cell_1_2"/></td>
+                                <td><field name="cell_1_3"/></td>
+                                <td><field name="cell_1_4"/></td>
+                                <td><field name="cell_1_5"/></td>
+                                <td><field name="cell_1_6"/></td>
+                            </tr>
+
+                            <tr>
+                                <th>Needs</th>
+                                <td><field name="cell_2_1"/></td>
+                                <td><field name="cell_2_2"/></td>
+                                <td><field name="cell_2_3"/></td>
+                                <td><field name="cell_2_4"/></td>
+                                <td><field name="cell_2_5"/></td>
+                                <td><field name="cell_2_6"/></td>
+                            </tr>
+
+                            <tr>
+                                <th>Feelings</th>
+                                <td><field name="cell_3_1"/></td>
+                                <td><field name="cell_3_2"/></td>
+                                <td><field name="cell_3_3"/></td>
+                                <td><field name="cell_3_4"/></td>
+                                <td><field name="cell_3_5"/></td>
+                                <td><field name="cell_3_6"/></td>
+                            </tr>
+
+                            <tr>
+                                <th>Barriers</th>
+                                <td><field name="cell_4_1"/></td>
+                                <td><field name="cell_4_2"/></td>
+                                <td><field name="cell_4_3"/></td>
+                                <td><field name="cell_4_4"/></td>
+                                <td><field name="cell_4_5"/></td>
+                                <td><field name="cell_4_6"/></td>
+                            </tr>
+
+                            <tr>
+                                <th>Rješenja</th>
+                                <td><field name="cell_5_1"/></td>
+                                <td><field name="cell_5_2"/></td>
+                                <td><field name="cell_5_3"/></td>
+                                <td><field name="cell_5_4"/></td>
+                                <td><field name="cell_5_5"/></td>
+                                <td><field name="cell_5_6"/></td>
+                            </tr>
+                        </table>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- AKCIJA -->
+    <record id="action_cjm" model="ir.actions.act_window">
+        <field name="name">Customer Journey Map</field>
+        <field name="res_model">cjm.analysis</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

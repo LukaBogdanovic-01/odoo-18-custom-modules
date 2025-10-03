@@ -73,6 +73,36 @@
     margin-bottom: 20px;
 }
 
+/* ====== ZAJEDNIČKI STIL ZA REPORT TABELE ====== */
+
+/* Sve ćelije - lijevo poravnate, vertikalno centrirane */
+.o_bmc_report table td,
+.o_bmc_report table th,
+.o_lc_report table td,
+.o_lc_report table th {
+    text-align: left !important;
+    vertical-align: middle !important;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+/* Prvi red (zaglavlja kolona) - blago siva */
+.o_bmc_report table thead th,
+.o_lc_report table thead th {
+    background-color: #f2f2f2 !important;
+    font-weight: 600;
+}
+
+/* Prva kolona */
+.o_bmc_report table td:first-child,
+.o_bmc_report table th:first-child,
+.o_lc_report table td:first-child,
+.o_lc_report table th:first-child {
+    background-color: #f2f2f2 !important;
+    font-weight: bold;
+}
+
+
 
 /* Za dashboard strategije */
 .o_strategija_dashboard {

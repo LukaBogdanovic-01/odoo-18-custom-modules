@@ -74,7 +74,13 @@
     <menuitem id="menu_digimen_linkbox" name="Linkbox" parent="menu_universal_request_goals_tools" sequence="40"/>
     <menuitem id="menu_ppp_root" name="PPP" parent="menu_universal_request_goals_tools" sequence="45"/>
     <menuitem id="menu_scenario_root" name="Scenario" parent="menu_universal_request_goals_tools" action="action_scenario" sequence="50"/>
-    <menuitem id="menu_strategija" name="Strategije" parent="menu_universal_request_goals_tools" action="action_strategija"/>
+    <menuitem id="menu_cjm" name="CustomerJourneyMap" parent="menu_universal_request_goals_tools" action="action_cjm" sequence="55"/>
+    <menuitem id="menu_strategija" name="Strategije" parent="menu_universal_request_goals_tools" action="action_strategija" sequence="60"/>
+    <menuitem id="menu_swot_v2" name="SWOT 2" parent="menu_universal_request_goals_tools" action="action_swot" sequence="65"/>
+    <menuitem id="menu_gap_v2" name="GAP 2" parent="menu_universal_request_goals_tools" action="action_gap2" sequence="70"/>
+    <menuitem id="menu_bmc_v2" name="BMC 2" parent="menu_universal_request_goals_tools" action="action_bmc2" sequence="75"/>
+    <menuitem id="menu_lc_v2" name="LC 2" parent="menu_universal_request_goals_tools" action="action_lc2" sequence="80"/>
+    
 
 
     <!-- Za PPP -->

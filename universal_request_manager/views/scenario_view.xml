@@ -9,13 +9,20 @@
                 .o_form_sheet table th {
                     border: 1px solid #999 !important;
                     padding: 6px;
-                    vertical-align: top;     /* tekst ide odozgo */
+                    text-align: left;      
+                    vertical-align: middle;     
                     word-wrap: break-word;   /* da lomi riječ umjesto širenja */
                     white-space: normal;     /* dozvoljava višelinijski tekst */
                 }
+
+                .o_form_sheet table tr:first-child th {
+                    background-color: #f2f2f2;
+                }
+
                 /* samo prva kolona */
                 .o_form_sheet table td:first-child,
                 .o_form_sheet table th:first-child {
+                    background-color: #f2f2f2;
                     text-align: left;
                     vertical-align: middle;
                     font-weight: bold; 
@@ -24,6 +31,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="project_id"/>
                     </group>
                     <div style="margin-top:60px;"></div>
                     <group>

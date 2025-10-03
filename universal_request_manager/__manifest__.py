@@ -26,6 +26,8 @@
         'views/ppp_views_and_actions.xml',
         'views/scenario_view.xml',
         'views/strategy_views.xml',
+        'views/alati_v2_forms.xml',
+        'views/cjm_analysis_views.xml',
         'views/universal_request_menus.xml',
         
     ],
@@ -35,6 +37,7 @@
             'universal_request_manager/static/src/js/bmc_lc_report.js',
             'universal_request_manager/static/src/js/gap_report.js',
             'universal_request_manager/static/src/js/strategija_dashboard.js',
+            'universal_request_manager/static/src/js/autosave.js',
             'universal_request_manager/static/src/css/universal_request.css',
             'universal_request_manager/static/src/xml/ost_dashboard_template.xml',
             'universal_request_manager/static/src/xml/ost_workflow_board.xml',

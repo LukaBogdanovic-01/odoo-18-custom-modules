@@ -81,3 +81,10 @@ access_ppp_archive_user,access.ppp.archive.user,model_ppp_archive,base.group_use
 access_scenario_user,access.scenario.user,model_scenario_scenario,base.group_user,1,1,1,1
 
 access_biz_strategija_user,biz.strategija.user,model_biz_strategija,base.group_user,1,1,1,1
+
+access_cjm_analysis_user,access.cjm.analysis.user,model_cjm_analysis,base.group_user,1,1,1,1
+
+access_swot_analysis2_user,access.swot.analysis2.user,model_swot_analysis2,base.group_user,1,1,1,1
+access_gap_analysis2_user,access.gap.analysis2.user,model_gap_analysis2,base.group_user,1,1,1,1
+access_bmc_analysis2_user,access.bmc.analysis2.user,model_bmc_analysis2,base.group_user,1,1,1,1
+access_lc_analysis2_user,access.lc.analysis2.user,model_lc_analysis2,base.group_user,1,1,1,1

@@ -349,6 +349,18 @@ class SwotAnalysis(models.Model):
         for rec in self:
             rec.from_dashboard = bool(self.env.context.get("from_dashboard"))
 
+    def action_open_items(self):
+        """Otvori stavke povezane sa ovom SWOT analizom"""
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "swot.item",
+            "view_mode": "kanban,list,form",
+            "target": "current",
+            "domain": [("swot_analysis_id", "=", self.id)],
+            "context": {"default_swot_analysis_id": self.id, "default_project_id": self.project_id.id},
+        }
+
 
 
 
@@ -387,19 +399,19 @@ class SwotItem(models.Model):
             'view_mode': 'form',
             'target': 'current',
             'context': {
-                
                 'default_project_id': project.id if project else False,
                 'default_description': self.description,
             }
         }
 
     
-
     @api.model
     def _group_expand_type(self, values, domain, order=None):
         return ['strength', 'weakness', 'opportunity', 'threat']
 
 
+
+#Ne znam za sta je ovaj model gap analize
 class GapAnalysisTemplate(models.Model):
     _name = 'gap.analysis.template'
     _description = 'GAP Analiza Šablon'
@@ -430,7 +442,7 @@ class GapAnalysisTemplate(models.Model):
 
 
 
-# OVO JE ZA GAP ANALIZU U CILJEVIMA
+
 
 class GapAnalysis(models.Model):
     _name = 'gap.analysis'
@@ -456,6 +468,21 @@ class GapAnalysis(models.Model):
     def _compute_from_dashboard(self):
         for rec in self:
             rec.from_dashboard = bool(self.env.context.get("from_dashboard"))
+
+    def action_open_items(self):
+        """Otvori stavke povezane sa ovom GAP analizom"""
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "gap.analysis.item",
+            "view_mode": "kanban,list,form",
+            "target": "current",
+            "domain": [("gap_analysis_id", "=", self.id)],
+            "context": {
+                "default_gap_analysis_id": self.id,
+                "default_project_id": self.project_id.id,
+            },
+        }
 
 
 class GapAnalysisItem(models.Model):

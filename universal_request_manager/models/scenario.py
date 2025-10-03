@@ -31,6 +31,13 @@ class Scenario(models.Model):
     cell_6_2 = fields.Html("R6C2")
     cell_6_3 = fields.Html("R6C3")
 
+    project_id = fields.Many2one(
+        "project.project",
+        string="Project",
+        index=True,
+        required=True
+    )
+
     strategija_id = fields.Many2one(
         "biz.strategija",
         string="Strategija",
