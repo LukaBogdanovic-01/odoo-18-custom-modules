@@ -42,3 +42,10 @@ class CjmAnalysis(models.Model):
     cell_5_4 = fields.Html("R5C4")
     cell_5_5 = fields.Html("R5C5")
     cell_5_6 = fields.Html("R5C6")
+
+    cell_6_1 = fields.Html("R5C1")
+    cell_6_2 = fields.Html("R5C2")
+    cell_6_3 = fields.Html("R5C3")
+    cell_6_4 = fields.Html("R5C4")
+    cell_6_5 = fields.Html("R5C5")
+    cell_6_6 = fields.Html("R5C6")

@@ -91,13 +91,22 @@
                             </tr>
 
                             <tr>
-                                <th>Rješenja</th>
+                                <th>Dodirne tačke</th>
                                 <td><field name="cell_5_1"/></td>
                                 <td><field name="cell_5_2"/></td>
                                 <td><field name="cell_5_3"/></td>
                                 <td><field name="cell_5_4"/></td>
                                 <td><field name="cell_5_5"/></td>
                                 <td><field name="cell_5_6"/></td>
+                            </tr>
+                            <tr>
+                                <th>Rješenja</th>
+                                <td><field name="cell_6_1"/></td>
+                                <td><field name="cell_6_2"/></td>
+                                <td><field name="cell_6_3"/></td>
+                                <td><field name="cell_6_4"/></td>
+                                <td><field name="cell_6_5"/></td>
+                                <td><field name="cell_6_6"/></td>
                             </tr>
                         </table>
                     </group>
